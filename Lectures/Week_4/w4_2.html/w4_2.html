@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        .flex-container {
+            display: flex;
+
+            /*Example-2*/
+            flex-direction: row;
+            /*Other options: row, row-reverse, column, column-reverse */
+
+            width: 500px;
+            height: 100%;
+            /*350px for column testing */
+            background-color: rgb(241, 241, 124);
+            justify-content: space-evenly;
+            /*Other options: flex-start, flex-end, center,space-around, space-between, space-evenly*/
+
+            /*Example-3*/
+            flex-wrap: wrap;
+            /*Other options: nowrap, wrap-reverse*/
+        }
+
+        .flex-item {
+            margin: 10px;
+            font-size: x-large;
+            background-color: #741b28;
+            color: #ffffff;
+            text-align: center;
+            line-height: 50px;
+        }
+
+        /*Example-2*/
+
+        #flxit1 {
+            flex: 4;
+        }
+
+        #flxit2 {
+            flex: 2;
+        }
+
+        #flxit3 {
+            flex: 1;
+        }
+
+        /*Example-5*/
+
+        div {
+            display: flex;
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            justify-content: space-evenly;
+        }
+
+        .nav-item {
+            margin: 0px 10px;
+        }
+
+        @media (max-width: 600px) {
+            div {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .nav-item {
+                margin: 5px 0px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h2> Welcome to Week 4 Slide 2 codes</h2>
+
+    <!--Example-1-2-->
+
+    <!-- <div class="flex-container">
+        <div id="flxit1" class="flex-item">1. Messi</div>
+        <div id="flxit2" class="flex-item">2. Ronaldinho</div>
+        <div id="flxit3" class="flex-item">3. Mbappe</div>
+    </div> -->
+
+
+    <!--Example-3-->
+
+    <!-- <div class="flex-container">
+        <div class="flex-item">1. Baggio</div>
+        <div class="flex-item">2. Maradona</div>
+        <div class="flex-item">3. Pele</div>
+        <div class="flex-item">4. Zidane</div>
+        <div class="flex-item">5. Figo</div>
+        <div class="flex-item">6. Iniesta</div>
+        <div class="flex-item">7. Maldini</div>
+        <div class="flex-item">8. Cafu</div>
+        <div class="flex-item">9. Zico</div>
+    </div> -->
+
+
+    <!--Example-4-->
+    <!-- 
+    <div class="flex-container">
+        <div class="flex-item" style="order: 3">1. Messi</div>
+        <div class="flex-item" style="order: 1">2. Ronaldinho</div>
+        <div class="flex-item" style="order: 2">3. Mbappe</div>
+    </div> -->
+
+
+    <!--Example-5-->
+
+    <div>
+        <div class="nav-item">Home</div>
+        <div class="nav-item">About</div>
+        <div class="nav-item">Services</div>
+        <div class="nav-item">Contact</div>
+    </div>
+
+</body>
+
+</html>
