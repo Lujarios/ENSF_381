@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Lab4 – Exercise 2</title>
+</head>
+    <body>
+        <h1>JavaScript Lab</h1>
+        <script>
+        // Just uncomment and comment the things you need to check!!!
+        
+        //Declaring Functions
+        // function add(num1, num2) {
+        //     return (num1 + num2);
+        // }
+        // function subtract(num1, num2) {
+        //     return (num1 - num2);
+        // }
+        // let num1 = 5;
+        // let num2 = 2;
+        // console.log(`${num1} + ${num2} = ${add(num1, num2)}`);
+        // console.log(`${num1} - ${num2} = ${subtract(num1, num2)}`);
+        // console.log(`${num2} - ${num1} = ${subtract(num2, num1)}`);
+
+
+        /* ------------------------------------------- */
+
+
+        //Using Default Parameters
+        // function add(num1, num2 = 0) {
+        //     return (num1 + num2);
+        // }
+        // function subtract(num1, num2 = 0) {
+        //     return (num1 - num2);
+        // }
+        // let num1 = 5;
+        // let num2 = 2;
+        // // testing w two args
+        // console.log(`${num1} + ${num2} = ${add(num1, num2)}`);
+        // console.log(`${num1} - ${num2} = ${subtract(num1, num2)}`);
+        // //testing w one arg
+        // console.log(`add(${num1}) = ${add(num1)}`);
+        // console.log(`subtract(${num1}) = ${subtract(num1)}`);
+        // // we can see that when we only put in one argument to these functions
+        // // the functions use the default values (which in this case, is both 0)
+
+
+        /* ------------------------------------------- */
+
+
+
+        //Implementing Arrow Functions
+        let add = (num1, num2) => {
+            return (num1 + num2);
+        }
+        let subtract = (num1, num2) => {
+            return (num1 - num2);
+        }
+        let multiply = (num1, num2) => {
+            return (num1 * num2);
+        }
+        let divide = (num1, num2) => {
+            if (num2 == 0) {
+                return;
+            }
+            return (num1/num2);
+        }
+       
+        
+        let num1 = 5;
+        let num2 = 2;
+
+        // testing add and subtract
+        console.log(`${num1} + ${num2} = ${add(num1, num2)}`);
+        console.log(`${num1} - ${num2} = ${subtract(num1, num2)}`);
+
+
+        // testing normal multiplication and division
+        console.log(`${num1} * ${num2} = ${multiply(num1, num2)}`);
+        let division1 = divide(num1, num2);
+        if (division1 == undefined){
+            console.log(`${num1} / ${num2} is not possible.`);
+        }
+        else{
+            console.log(`${num1} / ${num2} = ${division1}`);
+        }
+
+        // testing multiplication and division when one number is 0
+        let num3 = 5;
+        let num4 = 0;
+        console.log(`${num3} * ${num4} = ${multiply(num1, num2)}`);
+        let division2 = divide(num3, num4);
+        if (division2 == undefined){
+            console.log(`${num3} / ${num4} is not possible.`);
+        }
+        else{
+            console.log(`${num3} / ${num4} = ${division2}`);
+        }
+
+        /* ------------------------------------------- */
+
+        //Understanding Callback Functions
+        function Calculator(num1, num2, callback){
+            let result = callback(num1, num2);
+            return result;
+        }
+        // used add and multiply functions from above, and num1 and num2 from above
+        // testing add callback
+        console.log(`Using add as callback: ${num1} + ${num2} = ${Calculator(num1, num2, add)}`);
+        // testing mutltiply callback
+        console.log(`Using add as callback: ${num1} * ${num2} = ${Calculator(num1, num2, multiply)}`);
+
+
+
+
+
+        </script>
+    </body>
+</html>
