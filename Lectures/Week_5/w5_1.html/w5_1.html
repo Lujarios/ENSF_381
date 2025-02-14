@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>JavaScript Statements Example</title>
+</head>
+
+<body>
+    <h2> Welcome to Week 5 Slide 1 codes</h2>
+    <script>
+        // Example - Not in slides
+        // alert('New Page Alert!!');
+        // confirm('Do you want to reload the page?');
+        // prompt('Welcome User. What is your name?');
+
+        // Example-1
+        /* 
+        // Creating an array of numbers
+        let numbers = [1, 2, 3, 4, 5];
+        // Accessing elements by index
+        console.log(numbers[2]); 
+        // Output: 3
+        // Modifying an element
+        numbers[1] = 10;
+        console.log(numbers); 
+        // Output: [1, 10, 3, 4, 5]
+        // Adding elements to the end of the array
+        numbers.push(6);
+        console.log(numbers);
+        // Output: [1, 10, 3, 4, 5, 6]
+        // Iterating over the array
+        for (let i = 0; i < numbers.length; i++) 
+        {
+            console.log(numbers[i]);
+        } */
+
+        //Example-2
+        /* 
+        let fruits = ["apple", "orange", "banana"];
+        console.log(fruits.length);
+
+        
+        let colors = ["red", "green", "blue"];
+        let colorsString = colors.toString();
+        console.log(colorsString);
+
+        
+        let numbers = [31, 52, 23, 49, 56];
+        let slicedNumbers = numbers.slice(1, 4);
+        console.log(slicedNumbers);
+        console.log(numbers);
+
+        
+        let arr1 = [1, 2, 3];
+        let arr2 = ["a", "b", "c"];
+        let combinedArray = arr1.concat(arr2);
+        console.log(combinedArray);
+        console.log(combinedArray.concat([4,5,6]));
+
+        
+        //let numbers = [1, 2, 3, 4, 5];
+        delete numbers[2];
+        console.log(numbers);
+
+        
+        //let fruits = ["apple", "orange", "banana"];
+        fruits.splice(1, 1, "grape", "kiwi");
+        console.log(fruits);
+
+        
+        fruits.sort();
+        console.log(fruits); 
+
+        numbers.reverse();
+        console.log(numbers); */
+
+        //Example-3
+        /* 
+        //For Loop
+        let fruits = ["apple", "banana", "orange"];
+        for (let i = 0; i < fruits.length; i++) 
+        {
+            console.log(fruits[i]);
+        }
+
+        //For..of Loop
+        for (let fruit of fruits) 
+        {
+            console.log(fruit);
+        }
+
+        //forEach Method
+        fruits.forEach
+        (
+            function(fruit) 
+            {
+                console.log(fruit);
+            }
+        ); */
+
+
+        //Example-4
+        /* 
+        // Creating an object
+        let person = {
+            name: "John Doe",
+            age: 25,
+            isStudent: true,
+            introduce: function() {
+                console.log(`Hello, my name is ${this.name} and I am ${this.age} years old.`);
+            }
+        };
+        // Accessing properties
+        console.log(person.name);
+        console.log(person["age"]);
+        // Accessing methods
+        person.introduce(); */
+
+        //Example-5 (Not in slides: Dynamic inputs)
+
+        /* let newPerson = {};
+        let newName = prompt("Please enter name:");
+        let newAge = prompt("Please enter age:");
+        newPerson.name = newName;
+        newPerson.age = newAge;
+        console.log(newPerson.name);
+        console.log(newPerson["age"]);
+        newPerson.introduce = function() {
+            console.log(`Hello, my name is ${this.name} and I am ${this.age} years old.`)};
+        newPerson.introduce(); */
+
+        //Example-6
+        /* 
+        let person = {
+         name: "John Doe",
+         age: 25,
+         isStudent: true,
+         gender: "Male",
+         major: "Software Engineering"
+         };
+         let name = person.name;
+         let age = person.age;
+         let isStudent = person.isStudent;
+         let gender = person.gender;
+         let major = person.major;
+         console.log(`${gender} in ${major}.`) */
+
+        //Example-7
+        /* 
+        // Creating an object
+        let person = {
+            name: "John Doe",
+            age: 25,
+            address: {
+                city: "Calgary",
+                country: "Canada"
+            }
+        };
+        // Destructuring object properties
+        let { name, age, address } = person;
+        console.log(name);
+        // Output: John Doe
+        console.log(age);
+        // Output: 25
+        console.log(address);
+
+        let { name: personName, age: personAge } = person;
+        console.log(personName);
+        console.log(personAge); */
+
+        //Example-8
+        /* 
+        //Destructuring Arrays
+        const [firstAnimal] = ["Horse", "Mouse", "Cat"];
+        console.log(firstAnimal);
+
+        const [, , thirdAnimal] = ["Horse", "Mouse", "Cat"];
+        console.log(thirdAnimal);
+
+        //Spread Operator ...
+        let originalArray = [1, 2, 3];
+        let copiedArray = [...originalArray];
+        console.log(copiedArray);
+
+        let array1 = [1, 2, 3];
+        let array2 = [4, 5, 6];
+        let combinedArray = [...array1, ...array2];
+        console.log(combinedArray); */
+
+
+    </script>
+</body>
+
+</html>
