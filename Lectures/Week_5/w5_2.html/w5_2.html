@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>JavaScript Statements Example</title>
+</head>
+
+<body>
+    <h2> Welcome to Week 5 Slide 2 codes</h2>
+    <script>
+        /* 
+    let response = confirm('Shall we proceed?');
+    console.log(response); */
+
+        // Example-1
+        /*  
+         function calculateSquare(number) 
+         {
+         return (number * number);
+         }
+         numinput = prompt('Enter a number:');
+         console.log(`The square of ${numinput} is ${calculateSquare(numinput)}.`); */
+
+        //Example-2
+        /* 
+        //Function call can be made before definition!!
+        let username = prompt('Enter your name:');
+        let message = greetPerson(username);
+        console.log(message);
+
+        function greetPerson(name) 
+        {
+            // Using string template to create a greeting message
+            const greeting = `Hello ${name}, welcome to ENSF381!`;
+            // Returning the greeting
+            return greeting;
+        } */
+
+        //Example-3
+        /* 
+        function greetPerson(name='John') 
+        {
+            // Using string template to create a greeting message
+            const greeting = `Hello ${name}, welcome to ENSF381!`;
+            // Returning the greeting
+            return greeting;
+        }
+        let username = prompt('Enter your name:');
+        let message = greetPerson(username);
+        console.log(message);
+
+        message = greetPerson();
+        console.log(message); */
+
+
+        //Example-4
+        /*
+        // Function expression
+        var greet = function(name) 
+        {
+            return 'Hello, ' + name + '!';
+        };
+        // Example usage of the function expression
+        var message = greet('Thomas');
+        console.log(message); 
+        */
+
+        //Example-5
+        /* 
+        //Arrow Functions
+        let greetPerson = (name='Jerry') => `Hello ${name}, welcome to ENSF381!`;
+
+        let message = greetPerson('Eric');
+        console.log(message);
+        message = greetPerson();
+        console.log(message);
+        */
+
+        //Example-6
+        /* 
+        // Multiline arrow function
+        let calculateTotal = (price, tax) => {
+         let subTotal = price + (price * tax);
+         let discount = 0;
+         // Apply discount if the price is above a certain threshold
+         if (price > 100) 
+         {
+             discount = 10;
+         }
+         // Calculate the total after applying the discount
+         let total = subTotal - discount;
+         return total;
+         };
+         let totalPrice = calculateTotal(120, 0.15);
+         console.log(`Total Price: ${totalPrice}`); */
+
+        //Example-7
+        /* 
+        //Understanding Callback functions
+        // The "Callback" function is a variable function that can be dynamically passed to another function.
+        function greet(name, callback) {
+            const message = "Hello, " + name + "!";
+            callback(message);
+        }
+        function displayMessage(message) {
+            console.log(message);
+        }
+        
+        greet("Alice", displayMessage); */
+
+        //Example-8
+        // The "timeout" calls the function "dataSuccessfullyLoaded" immediately, and if the function doesn't
+        // return a function within 2 seconds, the "dataSuccessfullyLoaded" function will be called with "undefined" 
+        // as an argument.
+        let dataSuccessfullyLoaded = function(callback) {
+         console.log("Data fetched successfully.");
+         callback({ data: 'Some data' });
+         }
+         
+         function processData(data) {
+             console.log("Processing data:", data);
+         }
+         
+         function fetchData(callback) {
+             console.log("Fetching data...");
+             setTimeout(dataSuccessfullyLoaded(callback), 5000);
+         }
+         
+         fetchData(processData);
+
+        //Difference between the two not explained in slides
+        // NOTE: SetTimeout expects a function REFEERNCE so we can't pass the function with arguments directly
+        //TEST
+        /* let dataSuccessfullyLoaded = function (callback) {
+            console.log("Data fetched successfully.");
+            callback({ data: 'Some data' });
+        }
+
+        function processData(data) {
+            console.log("Processing data:", data);
+        }
+
+        function fetchFunctionReference(callback) {
+            return function () {
+                dataSuccessfullyLoaded(callback);
+            }
+        }
+
+        function fetchData(callback) {
+            console.log("Fetching data...");
+            setTimeout(fetchFunctionReference(callback), 2000);
+        }
+
+        fetchData(processData); */
+
+        //Example-9
+        /* 
+        function fetchData(callback) {
+            console.log("Fetching data...");
+            setTimeout(function () {
+                console.log("Data fetched successfully.");
+                callback({ data: 'Some data' });
+            }, 2000);
+        }
+
+        function processData(data) {
+            console.log("Processing data:", data);
+        }
+
+        fetchData(processData); */
+
+        //Can you define an array of 5 numbers, and then use functions to compute 
+        //the square of each element? Access the elements of the array using the
+        //forEach() method.
+        /* var numbers = [1, 2, 3, 4, 5];
+        function calculateSquare(number) {
+            console.log(`The square of ${number} is ${number * number}.`);
+        }
+        numbers.forEach(calculateSquare); */
+
+    </script>
+</body>
+
+</html>
