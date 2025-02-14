@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Lab4 – Exercise 3</title>
+</head>
+
+<body>
+	<h1>JavaScript Lab</h1>
+	<script>
+		var classRoster = ['Alice', 'Tom', 'Charlie', 'Diana', 'Evan'] // Step 2
+
+		console.log(classRoster.toString()) // Step 3
+
+		console.log(classRoster) // Step 4
+
+		classRoster.push('Fiona') // Step 5
+		classRoster.push('Nancy')
+
+		classRoster.shift() // Step 6
+
+		console.log(classRoster) // Step 7
+
+		console.log(classRoster.length) // Step 8
+
+		// Objects with Nested Structures
+		var classInfo = { // Step 1
+			className: 'ENSF381: Full-Stack Web Development',
+			instructor: 'Dr. Smith',
+			students: classRoster,
+			details: {
+				semester: 'Winter',
+				year: 2025
+			}
+		}
+
+		classInfo.schedule = ['Monday', 'Wednesday', 'Friday'] // Step 2
+
+		classInfo.instructor = 'Dr. Deb' // Step 3
+
+		console.log(classInfo.className) // Step 4
+		console.log(classInfo.instructor)
+		console.log(classInfo.students)
+
+		console.log(classInfo.details.semester) // Step 5
+
+		console.log(classInfo) // Step 6
+
+		var { className, students } = classInfo // Step 7
+		console.log(className)
+		console.log(students)
+
+		var { semester, year } = classInfo.details // Step 8
+		console.log(semester)
+		console.log(year)
+
+		var student1 = classInfo.students[0] // Step 9
+		var student2 = classInfo.students[1]
+
+		var remainingStudents = classInfo.students.slice(2) // Step 10
+
+		console.log(student1) // Step 11
+		console.log(student2)
+		console.log(remainingStudents)
+
+	</script>
+</body>
+
+</html>
