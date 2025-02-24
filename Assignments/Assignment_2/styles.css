@@ -1,0 +1,61 @@
+header {
+	display: flex;
+	justify-content: space-between;
+	background-color: #004080;
+	color: white;
+	padding: 20px;
+	margin: 0;
+}
+
+.navbar {
+	display: flex;
+	justify-content: space-evenly;
+	background-color: #003366;
+	color: white;
+	padding: 10px;
+}
+
+.navbar a {
+	color: white;
+	text-decoration: none;
+}
+
+/* on hover */
+.navbar a:hover {
+	text-decoration: underline;
+}
+
+.homepage main {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: #d4d4d4;
+	padding: 20px;
+	margin: 20px;
+}
+
+.homepage span {
+	margin: 5px;
+}
+
+footer {
+	background-color: #004080;
+	color: white;
+	text-align: center;
+	padding: 10px;
+	/* This padding looks like 20px in example */
+	margin: 0;
+}
+
+/* Part 2 */
+
+.login_form {
+	display: flexbox;
+	flex-direction: column;
+	align-items: center;
+	background-color: #d4d4d4;
+	padding: 30px;
+	margin: 0 150px 0 150px;
+	border-radius: 30px;
+	box-shadow: 5px 5px 5px #888888;
+}

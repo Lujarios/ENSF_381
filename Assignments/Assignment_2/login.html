@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>LMS Login</title>
+	<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+	<header> <img src="logo.jpg" style="width: 100px">
+		<h1>LMS - Learning Management System</h1>
+	</header>
+	<div class="navbar">
+		<pre><a href = "index.html">Homepage</a></pre>
+	</div>
+	<main>
+		<!-- Table with 2 cols and 2 rows, one for username and the otehr for password feild that is masked by * -->
+		<table>
+			<tr>
+				<td>Username:</td>
+				<td><input type="text" id="username" name="username" placeholder="Enter your username" required></td>
+			</tr>
+			<tr>
+				<td>Password:</td>
+				<td><input type="password" id="password" name="password" placeholder="Enter your password" required>
+				</td>
+			</tr>
+		</table>
+		<!-- Button to submit the form -->
+		<div style="margin-top: 10px;"><button type="submit">Login</button></div>
+		<!-- Forgot password link (not working) -->
+		<div style="margin-top: 10px; margin-bottom: 10px;"><a href="forgot_password.html">Forgot Password?</a></div>
+	</main>
+	<footer>
+		© 2025 LMS. All rights reserved.
+	</footer>
+</body>
+
+</html>
