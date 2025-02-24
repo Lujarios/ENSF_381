@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>JSON Example
+    </title>
+</head>
+
+<body>
+    <h2> Welcome to Week 7 Slide 1 codes</h2>
+
+    <script>
+        //Example-1
+        /* 
+        const jsonString = '{"name": "John", "age": 25}';
+        const parsedObject = JSON.parse(jsonString);
+        console.log(parsedObject)
+        console.log(parsedObject.name)
+        console.log(parsedObject.age) */
+
+        //Example-2
+        /* 
+                const employeeDataString = '{"employee": { "id": 101,"name": { "first": "John", "last": "Doe"}, "position": "Software Engineer","skills": ["JavaScript", "Python", "React"],"contact": {"email": "john.doe@example.com","phone": {"mobile": "555-1234", "office": "555-5678"}},"projects": [{"name": "Project A", "description": "Developing a web application", "status": "In Progress"},{"name": "Project B", "description": "Implementing new features", "status": "Completed"}]}}';
+        
+                const employeeData = JSON.parse(employeeDataString);
+        
+                const phoneNumber = employeeData.employee.contact.phone.mobile;
+        
+                console.log("Mobile Phone Number:", phoneNumber); */
+
+
+        //Example-3
+        /* 
+                //What is the output?
+                const jsonString = '{"name": "Bob", "age": "25"}';
+                const parsedObject = JSON.parse(jsonString);
+                console.log(parsedObject.age + 5);
+                //How to get 30 as output?
+                console.log(parseInt(parsedObject.age) + 5); */
+
+
+
+        //Example-4
+        /* 
+                const jsonString = '{"name": "John", "age": 25}';
+                const parsedObject = JSON.parse(jsonString);
+                console.log(jsonString.name)
+                console.log(jsonString.age)
+                // The json object itself cannot be accessed using
+                // the dot notation. */
+
+
+        //Example-5
+        /* 
+                const jsonString = '{"name": "John", "age": 25}';
+                let { name, age } = JSON.parse(jsonString);
+                console.log(name);
+                console.log(age); */
+
+
+        //Example-6 - JSON Array string
+        /* 
+                // Simple JSON array string
+                const jsonArrayString = '[10, 20, 30, 40, 50]';
+                // Parse JSON array string into a JavaScript array
+                const parsedArray = JSON.parse(jsonArrayString);
+                // Iterate through the parsed array and print each element
+                console.log("Parsed Array:");
+                for (let i = 0; i < parsedArray.length; i++) {
+                    console.log(`Element ${i + 1}: ${parsedArray[i]}`);
+                } */
+
+
+        //Example-7
+        /* 
+                function extract_data(person) {
+                    console.log("Name:", person.name);
+                    console.log("Age:", person.age);
+                    console.log("----------------------");
+                }
+                // Sample JSON array string
+                const jsonArrayString = '[{"name": "Alice", "age": 30}, {"name": "Bob", "age": 25}, {"name": "Charlie", "age": 35}]';
+                // Parse JSON array string into a JavaScript array of objects
+                const parsedArray = JSON.parse(jsonArrayString);
+                // Accessing values from the parsed array
+                parsedArray.forEach(extract_data); */
+
+
+        //Example-8
+        /* 
+                const jsonArrayString = '[{"name": "Alice", "age": 30}, {"name": "Bob", "age": 25}, {"name": "Charlie", "age": 35}]';
+                // Parse JSON array string into a JavaScript array of objects
+                const parsedArray = JSON.parse(jsonArrayString);
+                // Accessing values from the parsed array
+                parsedArray.forEach((person) => {
+                    console.log("Name:", person.name);
+                    console.log("Age:", person.age);
+                    console.log("----------------------");
+                }
+                );
+         */
+
+        //Example-9
+        /* 
+                const malformedJSON1 = '{ "name": "John", "age": 25, }';
+                const parsedObject = JSON.parse(malformedJSON1); */
+
+
+        //Example-10
+
+        const malformedJSON2 = '{ "name": "John", "age": 25, }';
+        try {
+            const parsedObject = JSON.parse(malformedJSON2);
+        }
+        catch (error) {
+            console.log('Error parsing JSON:', error);
+        }
+
+
+    </script>
+</body>
+
+</html>
