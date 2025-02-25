@@ -142,7 +142,105 @@ footer {
 	background-color: #8b1a1a;
 }
 
-/* Part 4 (millaine) */
 
+/* Part 4 - Attempt Quiz */
 
-/* Part 5 (millaine) */
+.quiz_banner {
+	width: 100%;
+	height: 150px;
+	border-radius: 15px;
+}
+
+.course_quiz_details {
+	background-color: lightblue;
+	margin: 0 250px 0 250px;
+	padding: 20px;
+	text-align: center;
+}
+
+.course_quiz_details h2 {
+	text-align: center;
+	font-weight: bold;
+	color: #004080;
+	/* just wanted this color */
+}
+
+.quiz_questions {
+	background-color: #cacaca;
+	padding: 20px;
+	margin: 0 350px 0 350px;
+	text-align: left;
+}
+
+.submit_answer_button {
+	background-color: lightblue;
+	border-color: lightblue;
+	color: black;
+	padding: 5px;
+	border-radius: 5px;
+	/* rounded corners */
+}
+
+.submit_answer_button:hover {
+	background-color: darkblue;
+	border-color: darkblue;
+	color: white;
+}
+
+.finish_quiz_button {
+	background-color: #D32F2F;
+	border-color: #D32F2F;
+	padding: 5px;
+	border-radius: 5px;
+
+	a {
+		color: white;
+	}
+}
+
+.finish_quiz_button:hover {
+	background-color: #821b1b;
+	border-color: #821b1b;
+}
+
+/* Part 5 - Leaderboard */
+
+.table_header {
+	background-color: #4CAF50;
+	color: white;
+	font-size: 35px;
+	text-align: center;
+}
+
+.first_place_row {
+	background-color: #FFD700;
+	text-align: center;
+}
+
+.second_place_row {
+	background-color: #C0C0C0;
+	text-align: center;
+}
+
+.third_place_row {
+	background-color: #CD7F32;
+	text-align: center;
+}
+
+.white_row {
+	background-color: #f9f9f9;
+	text-align: center;
+}
+
+.grey_row {
+	background-color: #e4e2e2;
+	text-align: center;
+}
+
+.profile_pic {
+	border-radius: 50px;
+	border-color: black;
+	border: 2px;
+	height: 50px;
+	width: 50px;
+}
