@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Lab4 – Exercise 1</title>
+</head>
+    <body>
+        <h1>JavaScript Lab</h1>
+        <script>
+        // Write your JavaScript code here
+
+        //Variable Declaration
+        const x = 2;
+        let y = "hi";
+        let z = true;
+        console.log(x, y, z);
+        //let y = 3;
+        // x = false;
+        // console.log(x, y, z);
+        // trying to change a declared variable with "let" results in an error
+        // as its in the same scope... 
+        // trying to change const variable also results in error as its a constant unchangeable variable
+
+
+        //String Operations
+        string1 = "Hello, World!"
+        string2 = "JavaScript is fun!" 
+        console.log(`Length of string1 is: ${string1.length}`)
+        console.log(`string1 and string2 concatonated is: ${string1 + string2}`)
+        console.log(`string2 after slice is: ${string2.replace("fun", "awesome")}`)
+
+
+        // String Templates
+        name = "Alice"
+        age = 25
+        let string3 = `My name is ${name} and I am ${age} years old`
+        console.log(string3);
+
+        //Working with Dates
+        let myDate = new Date('2025-02-14');
+        console.log(`Chosen date is: ${myDate.toDateString()}`);
+        console.log(myDate.getFullYear());
+        console.log(myDate.getMonth());  // zero indexed so february is 1
+        console.log(myDate.getDay());  // starts with sunday at 0 , mondayis 1,... etc      
+        let weekDays = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"]
+        console.log(`Day of week: ${weekDays[myDate.getDay()]}`);
+       
+       
+       </script>
+    </body>
+</html>
