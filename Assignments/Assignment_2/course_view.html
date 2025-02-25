@@ -3,82 +3,64 @@
 
 <head>
     <title>Course View - LMS</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
-<body style="margin-left: 50px; margin-right: 50px;">
+<body>
     <header> <img src="logo.jpg" style="width: 100px">
         <h1>LMS - Learning Management System</h1>
     </header>
-    <div>
-        <h2>LMS - Course View</h2>
-        <pre><a href = "index.html">Homepage</a></pre>
-        <br>
-        <label for="term">Select Term:</label>
-        <select id="term" name="term" onchange="updateCurrentTerm()">
-            <option value="Winter 2025">Winter 2025</option>
-            <option value="Fall 2024">Fall 2024</option>
-            <option value="Summer 2024">Summer 2024</option>
-            <option value="Spring 2024">Spring 2024</option>
-        </select>
-        <br>
+    <div class="navbar">
+        <a href="index.html">Homepage</a>
     </div>
-    <main>
+    <main class="course_view_page">
+        <div>
+            <h2>LMS - Course View</h2>
+            <label for="term">Select Term:</label>
+            <select id="term" name="term" onchange="updateCurrentTerm()" class="term_selection">
+                <option value="Winter 2025">Winter 2025</option>
+                <option value="Fall 2024">Fall 2024</option>
+                <option value="Summer 2024">Summer 2024</option>
+                <option value="Spring 2024">Spring 2024</option>
+            </select>
+            <br>
+        </div>
         <h2>Enrolled Courses</h2>
         <hr>
-        <!-- Current term: <span id="current-term">(conditional value selected from dropdown above)</span> -->
         <div>
-            <table style="width: 100%; ">
+            <table style="width: 100%;" class="course_tile">
                 <tr>
                     <td style="width: 33%;">
                         <img src="course1.jpg" style="height: 95%; width: 95%;">
+                        <p>Course Name: Web Developement</p>
+                        <p>Course Code: WD381</p>
+                        <p><a href="attempt_quiz.html">Attempt Quiz</a></p>
                     </td>
                     <td style="width: 33%;">
                         <img src="course1.jpg" style="height: 95%; width: 95%">
+                        <p>Course Name: Data Structures</p>
+                        <p>Course Code: DS371</p>
+                        <p><a href="attempt_quiz.html">Attempt Quiz</a></p>
                     </td>
                     <td style="width: 33%;">
                         <img src="course1.jpg" style="height: 95%; width: 95%">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p> Course Name: Web Developement <br> <br>
-                            Course Code: WD381 <br> <br>
-                            <a href="attempt_quiz.html">Attempt Quiz</a>
-                        </p>
-                    </td>
-                    <td>
-                        <p> Course Name: Data Structures <br> <br>
-                            Course Code: DS371 <br> <br>
-                            <a href="attempt_quiz.html">Attempt Quiz</a>
-                        </p>
-                    </td>
-                    <td>
-                        <p> Course Name: DBMS <br> <br>
-                            Course Code: DB346 <br> <br>
-                            <a href="attempt_quiz.html">Attempt Quiz</a>
-                        </p>
+                        <p>Course Name: DBMS</p>
+                        <p>Course Code: DB346</p>
+                        <p><a href="attempt_quiz.html">Attempt Quiz</a></p>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <img src="course1.jpg" style="height: 95%; width: 95%;">
+                        <p>Course Name: Software Testing</p>
+                        <p>Course Code: ST484</p>
+                        <p><a href="attempt_quiz.html">Attempt Quiz</a></p>
                     </td>
                     <td>
                         <img src="course1.jpg" style="height: 95%; width: 95%">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p> Course Name: Software Testing <br> <br>
-                            Course Code: ST484 <br> <br>
-                            <a href="attempt_quiz.html">Attempt Quiz</a>
-                        </p>
-                    </td>
-                    <td>
-                        <p> Course Name: Software Architectures <br> <br>
-                            Course Code: SA396 <br> <br>
-                            <a href="attempt_quiz.html">Attempt Quiz</a>
-                        </p>
+                        <p>Course Name: Software Architectures</p>
+                        <p>Course Code: SA396</p>
+                        <p><a href="attempt_quiz.html">Attempt Quiz</a></p>
                     </td>
                 </tr>
             </table>
@@ -86,43 +68,30 @@
         <br>
         <div>
             <h2> Pending Invitations</h2>
+        </div>
+        <div>
             <hr>
-            <table style="width: 100%;">
+            <table style="width: 100%;" class="course_tile">
                 <tr>
-                    <td style="width: 33%;">
+                    <td>
                         <img src="course2.jpg" style="height: 95%; width: 95%;">
+                        <p>Course Name: Data Science</p>
+                        <p>Course Code: DS102</p>
+                        <button class="accept">Accept</button>
+                        <button class="decline">Decline</button>
                     </td>
-                    <td style="width: 33%;">
+                    <td>
                         <img src="course2.jpg" style="height: 95%; width: 95%">
-                    </td>
-                    <td style="width: 33%;">
-
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p> Course Name: Data Science <br> <br>
-                            Course Code: DS102 <br> <br>
-                            <button style="background-color: lightgreen;"> Accept</button>
-                            <button style="background-color: salmon;"> Decline</button>
-                        </p>
-                    </td>
-                    <td>
-                        <p> Course Name: Machine Learning <br> <br>
-                            Course Code: ML105 <br> <br>
-                            <button style="background-color: lightgreen;"> Accept</button>
-                            <button style="background-color: salmon;"> Decline</button>
-                        </p>
-                    </td>
-                    <td>
+                        <p>Course Name: Machine Learning</p>
+                        <p>Course Code: ML105</p>
+                        <button class="accept">Accept</button>
+                        <button class="decline">Decline</button>
                     </td>
                 </tr>
-
             </table>
-
         </div>
     </main>
-
+    <br>
     <footer>
         © 2025 LMS. All rights reserved.
     </footer>
