@@ -145,6 +145,12 @@ footer {
 
 /* Part 4 - Attempt Quiz */
 
+.attempt_quiz_page {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
 .quiz_banner {
 	width: 100%;
 	height: 150px;
@@ -167,6 +173,7 @@ footer {
 
 .quiz_questions {
 	background-color: #cacaca;
+	width: 30%;
 	padding: 20px;
 	margin: 0 350px 0 350px;
 	text-align: left;

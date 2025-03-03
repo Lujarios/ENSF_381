@@ -6,62 +6,58 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 
-<body style="margin-left: 50px; margin-right: 50px;">
+<body>
     <header> <img src="logo.jpg" style="width: 100px">
         <h1>LMS - Learning Management System</h1>
     </header>
-    <div>
-        <h2> LMS - Attempt Quiz</h2>
-        <pre> <a href = "index.html">LMS Home</a> | <a href = "course_view.html">Courses</a></pre>
-        <br>
+    <div class="navbar">
+        <a href="index.html">LMS Home</a>
+        <a href="course_view.html">Courses</a>
     </div>
-    <main>
-        <img class = "quiz_banner" src="banner.jpg" style="width: 100%">
-
-        <div class = "course_quiz_details">
+    <br>
+    <main class="attempt_quiz_page">
+        <img class="quiz_banner" src="banner.jpg">
+        <div class="course_quiz_details">
             <h2>Course Name: Web Development</h2>
             <h2>Course Code: WD381</h2>
             <p>
                 Topic: HTML Basics <br> <br> Deadline: 11:59 PM, February 10, 2025
                 <br> <br> Attempts Allowed: 1
-        </p>
+            </p>
         </div>
-        
-        <div>
-            <h3>Question 1</h3>
-            <label>What does HTML stand for?</label>
-            <br> <br>
-            <div class = "quiz_questions">
-                <input type="radio" id="Hyper Text" name="HTML Acronym" value="Hyper Text">
-                <label for="Hyper Text">Hyper Text Markup Language</label>
-                <br>
-                <input type="radio" id="Home Tool" name="HTML Acronym" value="Home Tool">
-                <label for="Home Tool">Home Tool Markup Language</label>
-                <br>
-            </div>
-            
-            <button class = "submit_answer_button" type="submit"> Submit Answer</button>
-
-            <h3>Question 2</h3>
-            <label>Which of the following are HTML elements? (Select all that apply)</label>
-            <br> <br>
-            <div class = "quiz_questions">
-                <input type="checkbox" id="div" name="" value="div">
-                <label for="div">&lt;div&gt; </label>
-                <br>
-                <input type="checkbox" id="span" name="" value="span">
-                <label for="span"> &lt;span&gt; </label>
+        <h3>Question 1</h3>
+        <label>What does HTML stand for?</label>
+        <br>
+        <div class="quiz_questions">
+            <input type="radio" id="Hyper Text" name="HTML Acronym" value="Hyper Text">
+            <label for="Hyper Text">Hyper Text Markup Language</label>
             <br>
-            </div>
-        
-            <button class = "submit_answer_button" type="submit"> Submit Answer</button>
-
-            <br>
-            <br>
-            <button class = "finish_quiz_button"  type="submit"> <a href="leaderboard.html" style="text-decoration: none;">Finish Quiz </a></button>
-            <br>
+            <input type="radio" id="Home Tool" name="HTML Acronym" value="Home Tool">
+            <label for="Home Tool">Home Tool Markup Language</label>
             <br>
         </div>
+        <br>
+        <button class="submit_answer_button" type="submit"> Submit Answer</button>
+
+        <h3>Question 2</h3>
+        <label>Which of the following are HTML elements? (Select all that apply)</label>
+        <br>
+        <div class="quiz_questions">
+            <input type="checkbox" id="div" name="" value="div">
+            <label for="div">&lt;div&gt; </label>
+            <br>
+            <input type="checkbox" id="span" name="" value="span">
+            <label for="span"> &lt;span&gt; </label>
+            <br>
+        </div>
+        <br>
+        <button class="submit_answer_button" type="submit"> Submit Answer</button>
+
+        <br>
+        <button class="finish_quiz_button" type="submit"> <a href="leaderboard.html"
+                style="text-decoration: none;">Finish Quiz </a></button>
+        <br>
+        <br>
 
     </main>
     <footer>
