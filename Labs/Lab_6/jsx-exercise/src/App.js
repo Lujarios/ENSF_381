@@ -3,6 +3,7 @@ import './App.css';
 import Home from './Home.js'
 import About from './About.js'
 import Contact from './Contact.js'
+import EngineeringTopics from './EngineeringTopics.js';
 
 
 function App() {
@@ -19,7 +20,11 @@ function App() {
       <p>{Home("Home Page", "Welcome to our website.")}</p>
       <p>{About("About Us", "We are passionate about delivering quality experiences.")}</p>
       <p>{Contact("Contact Us", "Feel free to reach out to us via email or phone.")}</p>
-
+      <div>
+        <p> 
+          {EngineeringTopics()}
+        </p>
+      </div>
     </div>
   );
 }
