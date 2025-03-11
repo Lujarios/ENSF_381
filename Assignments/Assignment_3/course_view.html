@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Course View - LMS</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
+
 <body>
     <header>
         <img src="logo.jpg" alt="LMS Logo" style="width: 100px; height: 100px;">
@@ -16,7 +18,7 @@
             <a href="index.html">Homepage</a>
         </nav>
     </div>
-    
+
     <main class="courseview">
         <label for="term">Select Term:</label>
         <select id="term" name="term">
@@ -25,90 +27,90 @@
             <option value="Fall 2025">Fall 2025</option>
             <option value="Fall 2024">Fall 2024</option>
         </select>
-        
+
         <section class="Enrolled">
-			<!-- Courses in which the student is enrolled -->
+            <!-- Courses in which the student is enrolled -->
             <!-- Display Course 1, 2, and 3 in the same line -->
             <h2>Enrolled Courses</h2>
             <hr>
-            <table class="cv">
-				<tr>
-					<td>
-						<div>
+            <table id="enrolled" class="cv">
+                <tr>
+                    <td>
+                        <div>
                             <img src="course1.jpg" alt="Course 1">
                             <p>Course Name: Web Development</p>
                             <p>Course Code: WD381</p>
                             <a href="attempt_quiz.html">Attempt Quiz</a>
                         </div>
-					</td>
-					<td>
-						<div>
+                    </td>
+                    <td>
+                        <div>
                             <img src="course1.jpg" alt="Course 1">
                             <p>Course Name: Data Structures</p>
                             <p>Course Code: DS371</p>
                             <a href="attempt_quiz.html">Attempt Quiz</a>
                         </div>
-					</td>
+                    </td>
                     <td>
-						<div>
+                        <div>
                             <img src="course1.jpg" alt="Course 1">
                             <p>Course Name: Database Systems</p>
                             <p>Course Code: DB346</p>
                             <a href="attempt_quiz.html">Attempt Quiz</a>
                         </div>
-					</td>
-				</tr>
-				<!-- Display Course 4 and 5 in the same line -->
-				<tr>
-					<td>
-						<div>
+                    </td>
+                </tr>
+                <!-- Display Course 4 and 5 in the same line -->
+                <tr>
+                    <td>
+                        <div>
                             <img src="course1.jpg" alt="Course 1">
                             <p>Course Name: Software Testing</p>
                             <p>Course Code: ST484</p>
                             <a href="attempt_quiz.html">Attempt Quiz</a>
                         </div>
-					</td>
-					<td>
-						<div>
+                    </td>
+                    <td>
+                        <div>
                             <img src="course1.jpg" alt="Course 1">
                             <p>Course Name: Software Architectures</p>
                             <p>Course Code: SA396</p>
                             <a href="attempt_quiz.html">Attempt Quiz</a>
                         </div>
-					</td>
-				</tr>
-            </table> 
+                    </td>
+                </tr>
+            </table>
         </section>
-        
+
         <div>
         </div>
         <br>
         <br>
         <section class="Pending">
-			<!-- Courses in which the student is enrolled -->
+            <!-- Courses in which the student is enrolled -->
             <!-- Display Course 1, 2, and 3 in the same line -->
             <h2>Pending Invitations</h2>
             <hr>
             <table class="cv">
-				<tr>
-					<td>
+                <tr>
+                    <td>
                         <div>
                             <img src="course2.jpg" alt="Course 2">
                             <p>Course Name: Data Science</p>
                             <p>Course Code: DS102</p>
-                            <button class="accept">Accept</button>
-                            <button class="decline">Decline</button>
+                            <button id="accept" class="accept">Accept</button>
+                            <button id="decline" class="decline">Decline</button>
                         </div>
-                    </td> 
+                    </td>
                     <td>
                         <div>
                             <img src="course2.jpg" alt="Course 2">
                             <p>Course Name: Machine Learning</p>
                             <p>Course Code: ML105</p>
-                            <button class="accept">Accept</button>
-                            <button class="decline">Decline</button>
+                            <button id="accept" class="accept">Accept</button>
+                            <button id="decline" class="decline">Decline</button>
                         </div>
-                    </td> 
+                    </td>
                 </tr>
             </table>
         </section>
@@ -116,5 +118,64 @@
     <footer>
         <p>&copy; 2025 LMS. All rights reserved.</p>
     </footer>
+    <script>
+        // Function to count how many td elements are in a tr element
+        function countTds(tr) {
+            return tr.querySelectorAll('td').length;
+        }
+
+        const acceptButtons = document.querySelectorAll('#accept');
+        const declineButtons = document.querySelectorAll('#decline');
+        const enrolledTable = document.getElementById('enrolled');
+
+        // Add event listener that listens for click events on the button elements in the table td elements
+        // Accept button has id 'accept' and Decline button has id 'decline'
+        // On accept press, the td element should be added to the enrolled table
+        // If less than 3 tds in the tr element, add the td to the enrolled table row
+        // Otherwise check the next row and add the td to the first row with less than 3 tds
+        // When added to enrolled table the image should be replaced with"course1.jpg"
+        // Replace the buttons with a link to attempt_quiz.html
+        // On decline press, the td element should be removed from the pending table
+
+        acceptButtons.forEach((button) => {
+            button.addEventListener('click', (event) => {
+                const td = event.target.closest('td');
+                const tr = td.closest('tr');
+                const enrolledTds = enrolledTable.querySelectorAll('td');
+                const enrolledTrs = enrolledTable.querySelectorAll('tr');
+
+                if (countTds(enrolledTrs[enrolledTrs.length - 1]) < 3) {
+                    enrolledTrs[enrolledTrs.length - 1].appendChild(td);
+                } else {
+                    const newRow = document.createElement('tr');
+                    newRow.appendChild(td);
+                    enrolledTable.appendChild(newRow);
+                }
+
+                const img = td.querySelector('img');
+                img.src = 'course1.jpg';
+
+                const buttons = td.querySelectorAll('button');
+                buttons.forEach((button) => {
+                    button.remove();
+                });
+
+                const link = document.createElement('a');
+                link.href = 'attempt_quiz.html';
+                link.textContent = 'Attempt Quiz';
+                td.appendChild(link);
+            });
+        });
+
+        declineButtons.forEach((button) => {
+            button.addEventListener('click', (event) => {
+                const td = event.target.closest('td');
+                td.remove();
+            });
+        });
+
+
+    </script>
 </body>
+
 </html>

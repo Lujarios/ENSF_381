@@ -1,16 +1,13 @@
 import React, { useState } from 'react';
 
 function Example1() {
-    // count = current state value
-    // setCount = function to update the state
-    // useState(0) : 0 = initial state value
     const [count, setCount] = useState(0);
-
+    
     // Define a function to handle incrementing the count
     function handleIncrement() {
         setCount(count + 1);
     };
-
+    
     return (
         <div>
             <p>Count: {count}</p>

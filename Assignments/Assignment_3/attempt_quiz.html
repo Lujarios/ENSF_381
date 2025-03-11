@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Attempt Quiz - LMS</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
+
 <body>
     <header>
         <img src="logo.jpg" alt="LMS Logo" style="width: 100px; height: 100px;">
@@ -14,7 +16,7 @@
     <div>
         <nav>
             <a href="index.html">Homepage</a>
-            <a href="course_view.html">Courses</a> 
+            <a href="course_view.html">Courses</a>
         </nav>
     </div>
     <main class="attemptquiz">
@@ -26,7 +28,9 @@
             <p>Deadline: 11:59 PM, February 10, 2025</p>
             <p>Attempts Allowed: 1</p>
         </div>
-        
+
+        <h2>Time Remaining: <span id="timer">10:00</span></h2>
+
         <h3>Question 1</h3>
         <p>What does HTML stand for?</p>
         <div class="Qs">
@@ -35,27 +39,107 @@
             <input type="radio" id="q1b" name="q1" value="Home Tool Markup Language">
             <label for="q1b">Home Tool Markup Language</label><br>
         </div>
-        <br>
-        <button class="ans">Submit Answer</button>
-        
+        <p id="Q1_result"></p>
+        <button class="ans" onclick="submitAnswer('Q1')">Submit Answer</button>
+
         <h3>Question 2</h3>
         <p>Which of the following are HTML elements? (Select all that apply)</p>
         <div class="Qs">
-        <input type="checkbox" id="q2a" name="q2" value="<div>">
-        <label for="q2a">&lt;div&gt;</label><br>
-        <input type="checkbox" id="q2b" name="q2" value="<span>">
-        <label for="q2b">&lt;span&gt;</label><br>
+            <input type="checkbox" id="q2a" name="q2" value="<div>">
+            <label for="q2a">&lt;div&gt;</label><br>
+            <input type="checkbox" id="q2b" name="q2" value="<span>">
+            <label for="q2b">&lt;span&gt;</label><br>
         </div>
-        <br>
-        <button class="ans">Submit Answer</button>
-        
-        <br><br>
+        <p id="Q2_result"></p>
+        <button class="ans" onclick="submitAnswer('Q2')">Submit Answer</button>
+
+        <h2>Points Earned: <span id="points">0</span></h2>
+
         <a href="leaderboard.html">
-            <button class="FinQz">Finish Quiz</button>
+            <button class="FinQz" onclick="finishQuiz()">Finish Quiz</button>
         </a>
     </main>
     <footer>
         <p>&copy; 2025 LMS. All rights reserved.</p>
     </footer>
+
+    <script>
+        // Countdown Timer (10 minutes)
+        let timeLeft = 600; // 600 seconds = 10 minutes
+        const timerElement = document.getElementById("timer");
+
+        // Make a pointsEarned variable that is a dictionary with keys Q1 and Q2
+        let pointsEarned = {
+            Q1: 0,
+            Q2: 0
+        };
+
+        function updateTimer() {
+            let minutes = Math.floor(timeLeft / 60);
+            let seconds = timeLeft % 60;
+            timerElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+            timeLeft--;
+
+            if (timeLeft < 0) {
+                clearInterval(timerInterval);
+                alert("Time's up! Submitting quiz automatically.");
+                window.location.href = "leaderboard.html";
+            }
+        }
+
+        const timerInterval = setInterval(updateTimer, 1000); // Update every second
+
+        // Function to check correct answer for each question
+        function submitAnswer(Q) {
+            let correctAnswer = "";
+            let selectedAnswer = false;
+            let points = 0;
+
+            if (Q === "Q1") {
+                correctAnswer = "Hyper Text Markup Language";
+
+                selectedAnswer = document.querySelector('input[name="q1"]:checked') !== null;
+                let submittedAnswer = selectedAnswer ? document.querySelector('input[name="q1"]:checked').value : "";
+                points = submittedAnswer === correctAnswer ? 50 : 0;
+                pointsEarned.Q1 = points;
+
+                let message = document.createElement("p");
+                message.textContent = points === 50 ? "Correct!" : "Incorrect!";
+                let color = points === 50 ? "green" : "red";
+                document.getElementById("Q1_result").textContent = message.textContent;
+                document.getElementById("Q1_result").style.color = color;
+            } else if (Q === "Q2") {
+                correctAnswer = ["<div>", "<span>"];
+
+                selectedAnswer = document.querySelector('input[name="q2"]:checked') !== null;
+
+                let submittedAnswer = Array.from(document.querySelectorAll('input[name="q2"]:checked')).map(el => el.value);
+                for (let i = 0; i < submittedAnswer.length; i++) {
+                    if (correctAnswer.includes(submittedAnswer[i])) {
+                        points += 25;
+                    }
+                }
+                pointsEarned.Q2 = points;
+
+                let message = document.createElement("p");
+                message.textContent = points === 50 ? "Correct!" : "Incorrect!";
+                let color = points === 50 ? "green" : "red";
+                document.getElementById("Q2_result").textContent = message.textContent;
+                document.getElementById("Q2_result").style.color = color;
+
+            }
+
+            // Show alert for incomplete answers
+            if (selectedAnswer === false) {
+                alert("Please select an answer before submitting.");
+            } else {
+                alert(`You earned ${points} points for Question ${Q.slice(-1)}.`);
+            }
+
+            // Update points earned
+            document.getElementById("points").textContent = pointsEarned.Q1 + pointsEarned.Q2;
+        }
+    </script>
 </body>
+
 </html>
