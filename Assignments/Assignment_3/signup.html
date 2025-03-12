@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - LMS</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <header>
+        <img src="logo.jpg" alt="LMS Logo" style="width: 100px; height: 100px;">
+        <h1>LMS - Learning Management System</h1>
+    </header>
+    <div>
+        <nav>
+            <a href="index.html">Homepage</a>
+        </nav>
+    </div>
+    
+    <main class="login">
+        <h2>Sign up</h2>
+        <form>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required><br><br>
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required><br>
+
+            <label for="confirmPassword">Confirm Password:</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required><br>
+
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email" required><br>
+        </form> 
+        <br>
+        <br>  
+        
+                <button onclick="verifySignup()" class = "signup" >Sign Up</button>
+                <br><br>
+
+                <a href="./login.html">Already have an account? Login here</a>
+                <br><br>
+
+            <div id="signup-outcome">
+                <p id = "successMsg"></p>
+                <p id = "usernameMsg"></p>
+                <p id = "passwordMsg"></p>
+                <p id = "emailMsg"></p>
+            </div>
+  
+    </main>
+    <footer>
+        <p>&copy; 2025 LMS. All rights reserved.</p>
+    </footer>
+
+    <script>
+         async function verifySignup() {
+            try {
+
+                const signupOutcomeDiv = document.getElementById("signup-outcome");
+                signupOutcomeDiv.style = "border: 2px black solid; text-align: center;"
+                
+                let validUsername = true;
+                let usernameReason = "";
+                
+                let validPassword = true;
+                let passwordReason = "";
+                
+                let validEmail = true;
+                let emailReason = "";
+                
+
+                let username = document.getElementById("username").value;
+                let password = document.getElementById("password").value;
+                let confirmPassword = document.getElementById("confirmPassword").value;
+                let email = document.getElementById("email").value;
+                /* username checking */
+                console.log(username);
+                console.log(usernameReason);
+                if((username.length < 3) || (username.length > 20)) {
+                    validUsername = false;
+                    usernameReason += "Username must be between 3 and 20 characters. "
+                }
+                let usernameRegex = /^[a-zA-Z]+[A-Za-z0-9-_]+$/ ;
+                if(usernameRegex.test(username)== false) {
+                    validUsername = false;
+                    usernameReason += "Username must start with a letter. Allowed characters: alphanumeric characters (letters A-Z, numbers 0-9), hyphens (-), and underscores (_). Cannot contain spaces. "
+                }
+
+                /* password checking */
+                if(password.length < 8) {
+                    validPassword = false;
+                    passwordReason += "Password must be at least 8 characters. ";
+                }
+                let passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()\-_+=\[\]{}|;:'",.<>?/`~]).+$/ ;
+                if(passwordRegex.test(password)== false) {
+                    validPassword = false;
+                    passwordReason += "Must contain at least one uppercase letter, one lowercase letter, one number, and one special character. Cannot contain spaces." ;
+                }
+                if(password != confirmPassword){
+                    validPassword = false;
+                    passwordReason += "Passwords do not match. "
+                }
+
+                /* email checking 
+                    i just picked some common valid ones....
+                */
+                let emailRegex = /^[0-9a-zA-Z_.]+@(gmail|ucalgary|hotmail|yahoo|example).(com|ca|net|io)$/;
+                if(emailRegex.test(email)== false) {
+                    validEmail = false;
+                    emailReason += "Must be a valid email address format (e.g., username@example.com). Only letters, numbers, underscores (_), and periods (.) allowed. Cannot contain spaces. (Valid emails: ucalgary, gmail, hotmail, yahoo, example. Valid domains: .com .ca .net .io)"
+                }
+
+                let invalidUsernameMsg = document.getElementById("usernameMsg");
+                let invalidPasswordMsg = document.getElementById("passwordMsg");
+                let invalidEmailMsg = document.getElementById("emailMsg");
+
+                invalidUsernameMsg.textContent = `${validUsername ? "" : `Invalid Username (Reason: ${usernameReason})`}`;
+                invalidPasswordMsg.textContent = `${validPassword ? "" : `Invalid Password (Reason: ${passwordReason})`}`;
+                invalidEmailMsg.textContent = `${validEmail ? "" : `Invalid Email (Reason: ${emailReason})`}`;
+
+                        
+                if(validUsername && validPassword && validEmail){
+                    let successMessage = document.getElementById("successMsg").textContent = "Signup successful! Redirecting to login...";
+                    setTimeout(function() {
+                        window.location.href = 'login.html'; 
+                    }, 2000);
+                }
+            }
+            catch (error) { 
+                console.error('Error fetching data:', error); 
+            }
+        }
+    </script>
+</body>
+</html>

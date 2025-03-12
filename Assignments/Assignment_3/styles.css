@@ -83,6 +83,18 @@ input[type="password"] {
     border: 3px solid #b2b2b2;
     background-color: lightyellow;
 }
+/* Sign Up */
+button[class = "signup"] {
+    background-color: #4CAF50;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px;
+    opacity: 0.5;
+}
+button[class = "signup"]:hover {
+    background-color:#45A049 ;
+    opacity: 1.0;
+}
 
 /* Buttons */
 main button {
