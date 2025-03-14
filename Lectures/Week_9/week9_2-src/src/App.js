@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 
 //Default
-/* 
+
 function App() {
   return (
     <div className="App">
@@ -22,25 +22,25 @@ function App() {
       </header>
     </div>
   );
-} */
+}
 
 
 //Example-1
-/* 
+/*
 import Example1 from './Example1.js';
 function App() {
-  return (
-    <div>
-      <h1>useEffect() Example</h1>
-      <hr />
-      <Example1 />
-    </div>
+  return(
+  <div>
+    <h1>useEffect() Example</h1>
+    <hr />
+    <Example1 />
+  </div>
   );
-} */
-
+}
+*/
 
 //Example-2
-/* 
+/*
 import React, { useState } from 'react';
 
 function App() {
@@ -52,7 +52,7 @@ function App() {
     try {
       // Set loading to true while data is being fetched
       setIsLoading(true);
-
+      
       // Fetch data from an API
       const response = await fetch('https://api.randomuser.me/?nat=US&results=1');
       if (response.ok) {
@@ -63,16 +63,16 @@ function App() {
         // Set the fetched data to the state
         setEmail(email);
         setCellphone(cell);
-      }
+      } 
       else {
         // Handle error if the request was not successful
         console.error('Failed to fetch data:', response.statusText);
       }
-    }
+    } 
     catch (error) {
       // Handle network errors or other exceptions
       console.error('Error during data fetching:', error);
-    }
+    } 
     finally {
       setIsLoading(false); // Set loading to false once data fetching is complete
     }
@@ -92,19 +92,18 @@ function App() {
               <pre>{email}</pre>
               <pre>{cellphone}</pre>
             </div>
-          )
+            )
           }
         </div>
       )
       }
     </div>
   );
-} */
-
+}
+*/
 
 //Example-3
-// Different from E2 since it uses .then() instead of async/await
-/* 
+/*
 import React, { useState } from 'react';
 
 function App() {
@@ -115,26 +114,26 @@ function App() {
   function fetchData() {
     // Set loading to true while data is being fetched
     setIsLoading(true);
-
+    
     // Fetch data from an API using .then()
     fetch('https://api.randomuser.me/?nat=US&results=1')
-      .then((response) => response.json())
-      .then((data) => {
-        // Parse the JSON data from the response
-        let { email, cell } = data.results[0];
-
-        // Set the fetched data to the state
-        setEmail(email);
-        setCellphone(cell);
-      })
-      .catch((error) => {
-        // Handle error if the request was not successful
-        console.error('Failed to fetch data:', error.message);
-      })
-      .finally(() => {
-        // Set loading to false once data fetching is complete
-        setIsLoading(false);
-      });
+    .then((response) => response.json())
+    .then((data) => {
+      // Parse the JSON data from the response
+      let { email, cell } = data.results[0];
+      
+      // Set the fetched data to the state
+      setEmail(email);
+      setCellphone(cell);
+    })
+    .catch((error) => {
+      // Handle error if the request was not successful
+      console.error('Failed to fetch data:', error.message);
+    })
+    .finally(() => {
+      // Set loading to false once data fetching is complete
+      setIsLoading(false);
+    }); 
   }
 
 
@@ -152,18 +151,18 @@ function App() {
               <pre>{email}</pre>
               <pre>{cellphone}</pre>
             </div>
-          )
+            )
           }
         </div>
       )
       }
     </div>
   );
-} */
-
+}
+*/
 
 //Example-4
-/* 
+/*
 import React, { useState, useEffect } from 'react';
 
 function App() {
@@ -174,31 +173,31 @@ function App() {
   function fetchData() {
     // Set loading to true while data is being fetched
     setIsLoading(true);
-
+    
     // Fetch data from an API using .then()
     fetch('https://api.randomuser.me/?nat=US&results=1')
-      .then((response) => response.json())
-      .then((data) => {
-        // Parse the JSON data from the response
-        let { email, cell } = data.results[0];
-
-        // Set the fetched data to the state
-        setEmail(email);
-        setCellphone(cell);
-      })
-      .catch((error) => {
-        // Handle error if the request was not successful
-        console.error('Failed to fetch data:', error.message);
-      })
-      .finally(() => {
-        // Set loading to false once data fetching is complete
-        setIsLoading(false);
-      });
+    .then((response) => response.json())
+    .then((data) => {
+      // Parse the JSON data from the response
+      let { email, cell } = data.results[0];
+      
+      // Set the fetched data to the state
+      setEmail(email);
+      setCellphone(cell);
+    })
+    .catch((error) => {
+      // Handle error if the request was not successful
+      console.error('Failed to fetch data:', error.message);
+    })
+    .finally(() => {
+      // Set loading to false once data fetching is complete
+      setIsLoading(false);
+    }); 
   }
 
   useEffect(() => {
     fetchData();
-  }, []);
+  },[]);  
 
   return (
     <div>
@@ -214,19 +213,18 @@ function App() {
               <pre>{email}</pre>
               <pre>{cellphone}</pre>
             </div>
-          )
+            )
           }
         </div>
       )
       }
     </div>
   );
-} */
-
+}
+*/
 
 //Example-5
-// Different from E4 because useEffct() directly fetches data
-
+/*
 import React, { useState, useEffect } from 'react';
 
 function App() {
@@ -234,24 +232,24 @@ function App() {
   const [data, setData] = useState(null);
   // State to track loading status
   const [isLoading, setIsLoading] = useState(true);
-
+  
   // Effect to fetch data when the component mounts
   useEffect(() => {
     // Fetch data from an API
     fetch('https://api.randomuser.me/?nat=US&results=1')
-      .then((response) => response.json())
-      .then((data) => {
-        // Set the fetched data to the state
-        setData(data.results[0]);
-        // Set loading to false once data fetching is complete
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        // Handle errors
-        console.error('Error fetching data:', error);
-        // Set loading to false in case of an error
-        setIsLoading(false);
-      });
+    .then((response) => response.json())
+    .then((data) => {
+      // Set the fetched data to the state
+      setData(data.results[0]);
+      // Set loading to false once data fetching is complete
+      setIsLoading(false);
+    })
+    .catch((error) => {
+      // Handle errors
+      console.error('Error fetching data:', error);
+      // Set loading to false in case of an error
+      setIsLoading(false); 
+    }); 
   }, []);
 
   return (
@@ -266,11 +264,11 @@ function App() {
           <pre>{data.cell}</pre>
           <pre>{data.phone}</pre>
         </div>
-      )
+        )
       }
     </div>
   );
 }
-
+*/
 
 export default App;
