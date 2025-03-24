@@ -1,6 +1,16 @@
 import logo from './logo.svg';
 import './App.css';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import MainSection from './components/MainSection';
+import CourseItem from './components/CourseItem';
+import EnrolledCourses from './components/EnrolledCourse';
+import EnrollmentList from './components/EnrollmentList';
+import CourseCatalog from './components/CourseCatalog';
 
+
+// Default
+/* 
 function App() {
   return (
     <div className="App">
@@ -20,6 +30,20 @@ function App() {
       </header>
     </div>
   );
+} */
+
+// Homepage
+function App() {
+  return (
+    <div className="App">
+      <Header />
+      <MainSection />
+      <Footer />
+    </div>
+  );
 }
+
+
+
 
 export default App;
