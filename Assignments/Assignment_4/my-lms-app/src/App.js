@@ -4,7 +4,7 @@ import './App.css';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import CoursesPage from './pages/CoursesPage';
-import LoginForm from './pages/LoginForm';
+import LoginPage from './pages/LoginPage';
 import Homepage from './pages/Homepage';
 
 
@@ -17,7 +17,7 @@ function App() {
         <Routes>
           <Route path="/" exact element={<Homepage />} />
           <Route path="/courses" element={<CoursesPage />} />
-          <Route path="/login" element={<LoginForm />} />
+          <Route path="/login" element={<LoginPage />} />
         </Routes>
         <Footer />
       </div>
