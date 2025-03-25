@@ -1,32 +1,4 @@
-/* 
-
-MainSection Component: 
-	a. About LMS: Brief description of the system. 
-	b. Featured Courses: Display 3 random courses from courses.js. 
-	c. Testimonials: Show 2 random testimonials from testimonials.js on each render 
-(use useEffect). Include student name, review, and star rating (e.g., ★★★★☆).
- */
-
-/* From the original paae
-
-	<main class="index">
-		<section id="about">
-			<h2>About LMS</h2>
-			<p>The Learning Management System (LMS) helps students and instructors manage courses, quizzes, and track
-				performance efficiently.</p>
-			<h3>Key Features:</h3>
-			<div>
-				<p>- Enroll in courses</p>
-				<p>- Attempt quizzes</p>
-				<p>- View leaderboards</p>
-			</div>
-		</section>
-	</main>
- */
-
 import React, { useEffect, useState } from 'react';
-import CourseItem from './CourseItem';
-// CourseItem displays information about a course given the course object
 import testimonials from '../data/testimonials';
 import courses from '../data/courses';
 
@@ -58,6 +30,11 @@ function MainSection() {
 		setRandomTestimonials(randomTestimonials);
 	}, []);
 
+	function reviewStars(rating) {
+		const stars = '★'.repeat(rating) + '☆'.repeat(5 - rating);
+		return stars;
+	}
+
 	return (
 		<main className="index">
 			<section id="about">
@@ -72,28 +49,38 @@ function MainSection() {
 				</div>
 			</section>
 
+			<br />
+
 			<section id="featured-courses">
 				<h2>Featured Courses</h2>
-				<div className="course-list">
-					{randomCourses.map((course) => (
-						<CourseItem key={course.id} course={course} />
-					))}
-				</div>
+				<table className="course-list">
+					<tr>
+						{randomCourses.map((course) => (
+							<td key={course.id} className="course" width="33%">
+								<h3>{course.name}</h3>
+								<p>{course.description}</p>
+								<p>Instructor: {course.instructor}</p>
+								<p>Duration: {course.duration}</p>
+							</td>
+						))}
+					</tr>
+				</table>
 			</section>
+
+			<br />
 
 			<section id="testimonials">
 				<h2>Testimonials</h2>
 				<div className="testimonial-list">
 					{randomTestimonials.map((testimonial) => (
 						<div key={testimonial.id} className="testimonial">
-							<p>{testimonial.review}</p>
-							<p>{testimonial.student}</p>
-							<p>Rating: {testimonial.rating}</p>
+							<h3>{testimonial.courseName} Rating: {reviewStars(testimonial.rating)}</h3>
+							<p><i>"{testimonial.review}" - {testimonial.studentName}</i></p>
 						</div>
 					))}
 				</div>
 			</section>
-		</main>
+		</main >
 	);
 }
 

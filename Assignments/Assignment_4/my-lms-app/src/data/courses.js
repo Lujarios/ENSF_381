@@ -14,7 +14,7 @@ const courses = [
 		instructor: "Dr. Jane Doe",
 		description: "Learn Python, R, and SQL.",
 		duration: "10 weeks",
-		image: "images/course2.jpg"
+		image: "images/course1.jpg"
 	},
 	{
 		id: 3,
@@ -22,7 +22,7 @@ const courses = [
 		instructor: "Dr. John Smith",
 		description: "Master supervised and unsupervised learning.",
 		duration: "12 weeks",
-		image: "images/course3.jpg"
+		image: "images/course1.jpg"
 	},
 	{
 		id: 4,
@@ -30,7 +30,7 @@ const courses = [
 		instructor: "Dr. Jane Doe",
 		description: "Learn neural networks and deep learning.",
 		duration: "14 weeks",
-		image: "images/course4.jpg"
+		image: "images/course1.jpg"
 	},
 	{
 		id: 5,
@@ -38,7 +38,7 @@ const courses = [
 		instructor: "Dr. John Smith",
 		description: "Master cryptography and network security.",
 		duration: "16 weeks",
-		image: "images/course5.jpg"
+		image: "images/course1.jpg"
 	},
 	{
 		id: 6,
@@ -46,7 +46,7 @@ const courses = [
 		instructor: "Dr. Jane Doe",
 		description: "Learn AWS, Azure, and Google Cloud.",
 		duration: "18 weeks",
-		image: "images/course6.jpg"
+		image: "images/course1.jpg"
 	},
 	{
 		id: 7,
@@ -54,7 +54,7 @@ const courses = [
 		instructor: "Dr. John Smith",
 		description: "Master smart contracts and DApps.",
 		duration: "20 weeks",
-		image: "images/course7.jpg"
+		image: "images/course1.jpg"
 	},
 	{
 		id: 8,
@@ -62,7 +62,7 @@ const courses = [
 		instructor: "Dr. Jane Doe",
 		description: "Learn Arduino and Raspberry Pi.",
 		duration: "22 weeks",
-		image: "images/course8.jpg"
+		image: "images/course1.jpg"
 	},
 	{
 		id: 9,
@@ -70,7 +70,7 @@ const courses = [
 		instructor: "Dr. John Smith",
 		description: "Master qubits and quantum gates.",
 		duration: "24 weeks",
-		image: "images/course9.jpg"
+		image: "images/course1.jpg"
 	},
 	{
 		id: 10,
@@ -78,7 +78,7 @@ const courses = [
 		instructor: "Dr. Jane Doe",
 		description: "Learn ARKit and ARCore.",
 		duration: "26 weeks",
-		image: "images/course10.jpg"
+		image: "images/course1.jpg"
 	}
 ];
 export default courses;

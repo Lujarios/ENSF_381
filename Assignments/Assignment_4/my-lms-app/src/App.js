@@ -1,49 +1,28 @@
-import logo from './logo.svg';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import MainSection from './components/MainSection';
-import CourseItem from './components/CourseItem';
-import EnrolledCourses from './components/EnrolledCourse';
-import EnrollmentList from './components/EnrollmentList';
-import CourseCatalog from './components/CourseCatalog';
+import CoursesPage from './pages/CoursesPage';
+import LoginForm from './pages/LoginForm';
+import Homepage from './pages/Homepage';
 
-
-// Default
-/* 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-} */
 
 // Homepage
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <MainSection />
-      <Footer />
-    </div>
+    <Router>
+      <div className="App">
+        <Header />
+        <Routes>
+          <Route path="/" exact element={<Homepage />} />
+          <Route path="/courses" element={<CoursesPage />} />
+          <Route path="/login" element={<LoginForm />} />
+        </Routes>
+        <Footer />
+      </div>
+    </Router>
   );
 }
-
-
-
 
 export default App;
