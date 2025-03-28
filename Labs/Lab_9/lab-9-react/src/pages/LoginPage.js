@@ -1,5 +1,8 @@
+import React, {useState, createContext} from 'react';
+
+
 // Function to make a fetch request
-async function attemptLogin(event) {
+async function attemptLogin(event, setMessage) {
 	event.preventDefault();
 
 	// get username and password from the form
@@ -22,11 +25,18 @@ async function attemptLogin(event) {
 		if (data.success) {
 			// route to /predict
 			window.location.href = "/predict";
+			setMessage("Successful Login!");
+		}
+		else {
+			setMessage("Error - Incorrect password or username.");
 		}
 	}
 }
 
+
 function LoginPage() {
+
+	const [message, setMessage] = useState("");
 
 
 	return (
@@ -41,9 +51,10 @@ function LoginPage() {
 				<label htmlFor="password">Password:</label>
 				<input className="login-page" type="password" id="password" name="password" required />
 				<br />
-				<button className="login-page" type="submit" onClick={attemptLogin}>Login</button>
+				<button className="login-page" type="submit" onClick={(event) => attemptLogin(event, setMessage)}>Login</button>
 			</form>
 			<div className="message">
+				{message}
 			</div>
 		</div>
 	);
