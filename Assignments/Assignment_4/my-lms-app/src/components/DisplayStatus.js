@@ -23,15 +23,3 @@ function DisplayStatus() {
 }
 
 export default DisplayStatus;
-
-// import React from 'react';
-
-// function DisplayStatus({ type, message }) {
-//   return (
-//     <div style={{ border: '2px black solid', textAlign: 'center' }}>
-//       <p>{type}: {message}</p>
-//     </div>
-//   );
-// }
-
-// export default DisplayStatus;
