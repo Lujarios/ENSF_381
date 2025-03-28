@@ -1,17 +1,25 @@
 
 function LoginPage() {
+
+
 	return (
-		<div className="login-page">
-			<h1>Login Page</h1>
-			<form>
-				<label htmlFor="username">Username:</label>
-				<input type="text" id="username" name="username" required />
+		<div className="login-page" >
+				<h1>Login</h1>
+				<br />
+				<form>
+					<label htmlFor="username">Username:</label>
+					<input className = "login-page"
+					type="text" id="username" name="username" required />
+					<br />
+					<label htmlFor="password">Password:</label>
+					<input className = "login-page" type="password" id="password" name="password" required />
+					<br />
+					<button className = "login-page" type="submit" >Login</button>
+				</form>
 
-				<label htmlFor="password">Password:</label>
-				<input type="password" id="password" name="password" required />
+				<div className = "message">
 
-				<button type="submit">Login</button>
-			</form>
+				</div>
 		</div>
 	);
 }
