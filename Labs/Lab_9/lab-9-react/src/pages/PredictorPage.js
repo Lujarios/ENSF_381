@@ -1,39 +1,55 @@
-async function getPrediction(event) {
+import React, { useState, useEffect } from "react";
+
+async function getPrediction(event, setPrice) {
 	event.preventDefault();
 
-	// var for a test json
-	const testJson = {
-		city: "Airdrie",
-		province: "Alberta",
-		latitude: 43.7,
-		longitude: -79.42,
-		lease_term: "Long Term",
-		type: "Townhouse",
-		beds: 2,
-		baths: 1,
-		sq_feet: 800,
-		smoking: "Non-Smoking",
-		furnishing: "Unfurnished",
-		pets: true
-	}
+	// Get all the values from the form
+	const city = document.getElementById("city").value;
+	const province = document.getElementById("province").value;
+	const latitude = document.getElementById("latitude").value;
+	const longitude = document.getElementById("longitude").value;
+	const lease_term = document.getElementById("lease_term").value;
+	const type = document.getElementById("type").value;
+	const beds = document.getElementById("beds").value;
+	const baths = document.getElementById("baths").value;
+	const sq_feet = document.getElementById("sq_feet").value;
+	const furnishing = document.getElementById("furnishing").value;
+	const smoking = document.getElementById("smoking").value;
+	const pets = document.getElementById("pets").checked;
+
+	// Create a test json object
+	const input = {
+		city: city,
+		province: province,
+		latitude: parseFloat(latitude),
+		longitude: parseFloat(longitude),
+		lease_term: lease_term,
+		type: type,
+		beds: parseInt(beds),
+		baths: parseInt(baths),
+		sq_feet: parseInt(sq_feet),
+		smoking: smoking,
+		furnishing: furnishing,
+		pets: pets,
+	};
 
 	const response = await fetch("http://localhost:5000/predict_house_price", {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
 		},
-		body: JSON.stringify(testJson),
+		body: JSON.stringify(input),
 	});
 
-	const data = await response.json();
-	console.log(data);
-
+	if (response.ok) {
+		const data = await response.json();
+		setPrice(data.predicted_price);
+	}
 }
 
 
 function PredictorPage() {
-
-	let price = 2000;
+	const [price, setPrice] = useState(0);
 
 	return (
 		<div className="predict-page">
@@ -185,7 +201,7 @@ function PredictorPage() {
 					/>
 				</div>
 
-				<button type="submit">Predict</button>
+				<button type="submit" onClick={(event) => getPrediction(event, setPrice)}>Predict Price</button>
 			</form>
 
 			<br />
