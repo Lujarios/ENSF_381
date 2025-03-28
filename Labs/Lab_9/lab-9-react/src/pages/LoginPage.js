@@ -27,17 +27,24 @@ async function attemptLogin(event) {
 }
 
 function LoginPage() {
+
+
 	return (
-		<div className="login-page">
-			<h1>Login Page</h1>
+		<div className="login-page" >
+			<h1>Login</h1>
+			<br />
 			<form>
 				<label htmlFor="username">Username:</label>
-				<input type="text" id="username" name="username" required />
-
+				<input className="login-page"
+					type="text" id="username" name="username" required />
+				<br />
 				<label htmlFor="password">Password:</label>
-				<input type="password" id="password" name="password" required />
-				<button onClick={attemptLogin}>Login</button>
+				<input className="login-page" type="password" id="password" name="password" required />
+				<br />
+				<button className="login-page" type="submit" onClick={attemptLogin}>Login</button>
 			</form>
+			<div className="message">
+			</div>
 		</div>
 	);
 }
