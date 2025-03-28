@@ -1,11 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
-import CoursesPage from './pages/CoursesPage';
 import LoginPage from './pages/LoginPage';
-import Homepage from './pages/Homepage';
-
-
+import PredictorPage from './pages/PredictorPage';
 
 // Homepage
 function App() {
@@ -13,9 +10,8 @@ function App() {
     <Router>
       <div className="App">
         <Routes>
-          <Route path="/" exact element={<Homepage />} />
-          <Route path="/courses" element={<CoursesPage />} />
-          <Route path="/login" element={<LoginPage />} />
+          <Route path="/" element={<LoginPage />} />
+          <Route path="/predict" element={<PredictorPage />} />
         </Routes>
       </div>
     </Router>

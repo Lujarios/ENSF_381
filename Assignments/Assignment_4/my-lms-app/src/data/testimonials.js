@@ -19,8 +19,8 @@ const testimonials = [
 		rating: 2
 	},
 	{
-		studentName: "Cybersecurity",
-		courseName: "Data Science",
+		studentName: "Diana Prince",
+		courseName: "Cybersecurity",
 		review: "Could be better.",
 		rating: 3
 	}
