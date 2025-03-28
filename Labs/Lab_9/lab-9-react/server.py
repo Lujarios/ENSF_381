@@ -1,10 +1,10 @@
 from flask import Flask, request, jsonify
-from flask_cors import CORS
 import pandas as pd
 import joblib
+from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
 
 valid_logins = {
 	"alice": "password123",
@@ -20,8 +20,24 @@ valid_logins = {
 }
 
 # Assigning multiple routes to the same function
+@app.route('/validate_login',methods=['POST'])
+def validate_login():
+	# { username: "name", password: "password" }
+	data = request.get_json() # Retrieves the JSON data from the incoming request and store it in a dictionary
+	username = data['username']
+	password = data['password']
+
+	print('Validating login of:', username)
+	if username in valid_logins and valid_logins[username] == password:
+		print('Login successful!')
+		return {'success': True, 'message': 'Login successful!'}, 200
+	else:
+		print('Login failed!')
+		return {'success': False, 'message': 'Invalid username or password!'}, 401
+	
+
 @app.route('/predict_house_price',methods=['POST'])
-def home():
+def predict_house_price():
 	model = joblib.load("./src/random_forest_model.pkl") 
 	print("Model loaded")
 	
@@ -56,11 +72,7 @@ def home():
 	predicted_price = model.predict(sample_df) 
 	print(predicted_price)
 	
-	return jsonify({"predicted_price": float(predicted_price[0])}) 
-
-@app.route('/about')
-def about():
-  return 'Welcome to the About Us page!'
+	return jsonify({"predicted_price": float(predicted_price[0])})
 
 if __name__ == '__main__':
   app.run(debug=True)
