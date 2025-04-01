@@ -1,33 +1,36 @@
 import React, { useEffect, useState } from 'react';
-import testimonials from '../data/testimonials';
-import courses from '../data/courses';
 
 function MainSection() {
 	const [randomCourses, setRandomCourses] = useState([]);
 	const [randomTestimonials, setRandomTestimonials] = useState([]);
 
 	useEffect(() => {
-		// Get 3 random courses
-		const randomCourses = [];
-		while (randomCourses.length < 3) {
-			const randomIndex = Math.floor(Math.random() * courses.length);
-			const randomCourse = courses[randomIndex];
-			if (!randomCourses.includes(randomCourse)) {
-				randomCourses.push(randomCourse);
-			}
-		}
-		setRandomCourses(randomCourses);
+		// Fetch courses from the backend
+		fetch('http://localhost:5000/courses')
+			.then((response) => response.json())
+			.then((data) => {
+				const courses = data.courses; // Extract courses array
+				// Get 3 random courses
+				const selectedCourses = [];
+				while (selectedCourses.length < 3 && courses.length > 0) {
+					const randomIndex = Math.floor(Math.random() * courses.length);
+					const randomCourse = courses[randomIndex];
+					if (!selectedCourses.includes(randomCourse)) {
+						selectedCourses.push(randomCourse);
+					}
+				}
+				setRandomCourses(selectedCourses);
+			})
+			.catch((error) => console.error('Error fetching courses:', error));
 
-		// Get 2 random testimonials
-		const randomTestimonials = [];
-		while (randomTestimonials.length < 2) {
-			const randomIndex = Math.floor(Math.random() * testimonials.length);
-			const randomTestimonial = testimonials[randomIndex];
-			if (!randomTestimonials.includes(randomTestimonial)) {
-				randomTestimonials.push(randomTestimonial);
-			}
-		}
-		setRandomTestimonials(randomTestimonials);
+		// Fetch testimonials from the backend
+		fetch('http://localhost:5000/testimonials')
+			.then((response) => response.json())
+			.then((data) => {
+				const testimonials = data.testimonials; // Extract testimonials array
+				setRandomTestimonials(testimonials);
+			})
+			.catch((error) => console.error('Error fetching testimonials:', error));
 	}, []);
 
 	function reviewStars(rating) {
@@ -73,7 +76,7 @@ function MainSection() {
 				<h2>Testimonials</h2>
 				<div className="testimonial-list">
 					{randomTestimonials.map((testimonial) => (
-						<div key={testimonial.id} className="testimonial">
+						<div key={testimonial.courseName} className="testimonial">
 							<h3>{testimonial.courseName} Rating: {reviewStars(testimonial.rating)}</h3>
 							<p><i>"{testimonial.review}" - {testimonial.studentName}</i></p>
 						</div>

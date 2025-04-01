@@ -1,8 +1,26 @@
-import React from 'react';
-import courses from '../data/courses';
+import React, { useEffect, useState } from 'react';
 import CourseItem from './CourseItem';
 
 function CourseCatalog({ onClick }) {
+    const [courses, setCourses] = useState([]);
+
+    useEffect(() => {
+        const fetchCourses = async () => {
+            try {
+                const response = await fetch('http://localhost:5000/courses');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch courses');
+                }
+                const data = await response.json();
+                setCourses(data.courses); // Access the "courses" array from the response
+            } catch (error) {
+                console.error('Error fetching courses:', error);
+            }
+        };
+
+        fetchCourses();
+    }, []);
+
     return (
         <div>
             <h1>Course Catalog</h1>
@@ -13,9 +31,7 @@ function CourseCatalog({ onClick }) {
                     ))}
                 </div>
             </div>
-
         </div>
-
     );
 }
 
