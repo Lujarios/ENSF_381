@@ -1,0 +1,82 @@
+[
+	{
+		"id": 1,
+		"name": "Web Development",
+		"instructor": "Dr. John Smith",
+		"description": "Master HTML, CSS, and JavaScript.",
+		"duration": "8 weeks",
+		"image": "images/course1.jpg"
+	},
+	{
+		"id": 2,
+		"name": "Data Science",
+		"instructor": "Dr. Jane Doe",
+		"description": "Learn Python, R, and SQL.",
+		"duration": "10 weeks",
+		"image": "images/course1.jpg"
+	},
+	{
+		"id": 3,
+		"name": "Machine Learning",
+		"instructor": "Dr. John Smith",
+		"description": "Master supervised and unsupervised learning.",
+		"duration": "12 weeks",
+		"image": "images/course1.jpg"
+	},
+	{
+		"id": 4,
+		"name": "Artificial Intelligence",
+		"instructor": "Dr. Jane Doe",
+		"description": "Learn neural networks and deep learning.",
+		"duration": "14 weeks",
+		"image": "images/course1.jpg"
+	},
+	{
+		"id": 5,
+		"name": "Cybersecurity",
+		"instructor": "Dr. John Smith",
+		"description": "Master cryptography and network security.",
+		"duration": "16 weeks",
+		"image": "images/course1.jpg"
+	},
+	{
+		"id": 6,
+		"name": "Cloud Computing",
+		"instructor": "Dr. Jane Doe",
+		"description": "Learn AWS, Azure, and Google Cloud.",
+		"duration": "18 weeks",
+		"image": "images/course1.jpg"
+	},
+	{
+		"id": 7,
+		"name": "Blockchain",
+		"instructor": "Dr. John Smith",
+		"description": "Master smart contracts and DApps.",
+		"duration": "20 weeks",
+		"image": "images/course1.jpg"
+	},
+	{
+		"id": 8,
+		"name": "Internet of Things",
+		"instructor": "Dr. Jane Doe",
+		"description": "Learn Arduino and Raspberry Pi.",
+		"duration": "22 weeks",
+		"image": "images/course1.jpg"
+	},
+	{
+		"id": 9,
+		"name": "Quantum Computing",
+		"instructor": "Dr. John Smith",
+		"description": "Master qubits and quantum gates.",
+		"duration": "24 weeks",
+		"image": "images/course1.jpg"
+	},
+	{
+		"id": 10,
+		"name": "Augmented Reality",
+		"instructor": "Dr. Jane Doe",
+		"description": "Learn ARKit and ARCore.",
+		"duration": "26 weeks",
+		"image": "images/course1.jpg"
+	}
+]

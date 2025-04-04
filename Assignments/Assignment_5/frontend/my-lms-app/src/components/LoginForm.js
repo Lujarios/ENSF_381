@@ -1,6 +1,4 @@
-
-
-import React, { useState, useEffect, createContext } from 'react';
+import React, { useState, createContext } from 'react';
 import AuthMessage from './AuthMessage';
 
 export const CredentialsContext = createContext();

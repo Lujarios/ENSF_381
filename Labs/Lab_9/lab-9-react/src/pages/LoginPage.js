@@ -1,4 +1,4 @@
-import React, {useState, createContext} from 'react';
+import React, { useState, createContext } from 'react';
 
 
 // Function to make a fetch request
@@ -22,13 +22,12 @@ async function attemptLogin(event, setMessage) {
 	if (response.ok) {
 		const data = await response.json();
 		console.log(data.message);
+		setMessage(data.message);
+
 		if (data.success) {
-			// route to /predict
+			// Wait 2s
+			await new Promise(resolve => setTimeout(resolve, 2000));
 			window.location.href = "/predict";
-			setMessage("Successful Login!");
-		}
-		else {
-			setMessage("Error - Incorrect password or username.");
 		}
 	}
 }

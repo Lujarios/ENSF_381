@@ -1,5 +1,7 @@
-// Millaine Li - 30188606
-// Luca Rios - 30181439
+/*
+ * Luca Rios  - 30181439
+ * Millaine Li - 30188606
+ */
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
