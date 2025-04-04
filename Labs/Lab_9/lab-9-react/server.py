@@ -1,3 +1,10 @@
+# Luca Rios - 30181439
+# Millaine Li 30188606
+
+# please we finished it, just forgot to submit :( please have mercy 
+
+
+
 from flask import Flask, request, jsonify
 import pandas as pd
 import joblib

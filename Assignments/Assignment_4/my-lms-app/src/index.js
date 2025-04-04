@@ -1,3 +1,7 @@
+// Millaine Li - 30188606
+// Luca Rios - 30181439
+
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
