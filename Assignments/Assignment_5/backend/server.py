@@ -2,6 +2,7 @@ from flask import Flask, request
 from flask_cors import CORS
 import random
 import json
+import re
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
@@ -23,6 +24,45 @@ students = {
 		"enrolled_courses": [2,3,5]
 	}
 }
+def usernameCheck(username):
+	if (len(username) >20) or (len(username) < 3):
+		return False
+	if not username[0].isalpha():
+		return False
+	if not re.match(r'^[A-Za-z][A-Za-z0-9_-]*$', username):
+		return False
+	
+	return True
+
+def checkPassword(password):
+    if len(password) < 8:
+        return False
+    
+    if not re.search(r'[A-Z]', password): 
+        return False
+    if not re.search(r'[a-z]', password):  
+        return False
+    if not re.search(r'[0-9]', password): 
+        return False
+    if not re.search(r'[!@#$%^&*()\-\+=\[\]{}|;:\'",.<>?/`~]', password):  
+        return False
+
+    if ' ' in password:
+        return False
+    
+    return True
+
+def verifySignup(username, password, confirm_password, email):
+	messages =[]
+	if (usernameCheck(username) == False):
+		messages.append("Username must be between 3-20 characters. Only alphanumeric characters, hyphens, and underscores allowed. Must start with a letter.")
+	if(checkPassword(password) == False ):
+		messages.append("bad passssword fix this message tho")
+	if (not(password == confirm_password)):
+		messages.append("Passwords do not match CHECK THIS THO")
+	#check email still 
+	return messages
+
 
 def printStudents():
 	# prints all students in the database
@@ -43,9 +83,13 @@ def getNewStudentId():
 def register():
 	data = request.get_json()
 	student_id = getNewStudentId()
+	messages = verifySignup()
 	if data["username"] in [students[i]["username"] for i in students]:
+
 		return {"success": False, "message": "Username already exists"}, 400
+
 	else:
+		
 		students[student_id] = {
 			"username": data["username"],
 			"password": data["password"],

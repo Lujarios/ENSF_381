@@ -1,9 +1,12 @@
 import React, { useState, createContext } from 'react';
 import AuthMessage from './AuthMessage';
+import { useNavigate } from 'react-router-dom';
 
 export const CredentialsContext = createContext();
 
 function LoginForm() {
+
+	const navigate = useNavigate();
 
 	const [enteredUsername, setEnteredUsername] = useState("");
 	const [enteredPassword, setEnteredPassword] = useState("");
@@ -41,6 +44,7 @@ function LoginForm() {
 				<br /><br />
 				<a href="#">Forgot Password?</a>
 				<br />
+				<a  href="/signup" >Sign Up</a>
 			</div>
 			<div>
 				<CredentialsContext.Provider value={{ enteredUsername, enteredPassword, loginPressed }}>
