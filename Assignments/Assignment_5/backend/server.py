@@ -7,6 +7,7 @@ import re
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
 
+
 # key: student_id
 # data: {username, password, email, enrolled_courses(list)}
 # 2 sample data already added
@@ -24,7 +25,7 @@ students = {
 		"enrolled_courses": [2,3,5]
 	}
 }
-def usernameCheck(username):
+def checkUsername(username):
 	if (len(username) >20) or (len(username) < 3):
 		return False
 	if not username[0].isalpha():
@@ -52,9 +53,15 @@ def checkPassword(password):
     
     return True
 
+def checkEmail(email):
+	if not re.match(r'^[0-9a-zA-Z_.]+@(gmail|ucalgary|hotmail|yahoo|example).(com|ca|net|io)$', email):
+		return False
+	return True
+
+
 def verifySignup(username, password, confirm_password, email):
 	messages =[]
-	if (usernameCheck(username) == False):
+	if (checkUsername(username) == False):
 		messages.append("Username must be between 3-20 characters. Only alphanumeric characters, hyphens, and underscores allowed. Must start with a letter.")
 	if(checkPassword(password) == False ):
 		messages.append("bad passssword fix this message tho")
@@ -79,17 +86,49 @@ def getNewStudentId():
 		student_id = str(random.randint(1000,9999))
 	return student_id
 
+# @app.route('/register', methods=['OPTIONS'])
+# def handle_options():
+#     response = app.make_response()
+#     response.headers['Access-Control-Allow-Origin'] = '*'
+#     response.headers['Access-Control-Allow-Methods'] = 'POST, OPTIONS'
+#     response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization'
+#     return response
+
+
 @app.route('/register',methods=['POST'])
 def register():
+	print("IN REGISTER")
 	data = request.get_json()
 	student_id = getNewStudentId()
-	messages = verifySignup()
+	# messages = verifySignup()
+	messages =[]
+	username = data["username"]
+	print("USERNAME IS")
+	print(username)
+	password = data['password']
+	confirm_password = data['confirm_password']
+	email = data['email']
+
+	valid = True
+
 	if data["username"] in [students[i]["username"] for i in students]:
+		messages.append("Username already exists")
+		valid = False
+	if (checkUsername(username) == False):
+		valid = False
+		print("HEHE")
+		messages.append("Username must be between 3-20 characters. Only alphanumeric characters, hyphens, and underscores allowed. Must start with a letter.")
+	if(checkPassword(password) == False ):
+		valid = False
+		messages.append("bad passssword fix this message tho")
+	if (not(password == confirm_password)):
+		valid = False
+		messages.append("Passwords do not match CHECK THIS THO")
+	if(checkEmail(email) == False ):
+		valid = False
+		messages.append("bad email fix this message tho")
 
-		return {"success": False, "message": "Username already exists"}, 400
-
-	else:
-		
+	if (valid):
 		students[student_id] = {
 			"username": data["username"],
 			"password": data["password"],
@@ -99,13 +138,18 @@ def register():
 		printStudents()
 		return {"success": True, "student_id": student_id, "message": "Registration successful"}, 200
 
+	else:
+		return {"success": False, "message": messages}, 200
+	
+		
+		
 @app.route('/login',methods=['POST'])
 def login():
 	data = request.get_json()
 	for student_id in students:
 		if students[student_id]["username"] == data["username"] and students[student_id]["password"] == data["password"]:
-			return {"success": True, "student_id": student_id}, 200
-	return {"success": False, "message": "Invalid credentials"}, 401
+			return {"success": True, "student_id": student_id, "message": "Login Successful!"}, 200
+	return {"success": False, "message": "Incorrect username or password."}, 200
 
 @app.route('/testimonials',methods=['GET'])
 def testimonials():

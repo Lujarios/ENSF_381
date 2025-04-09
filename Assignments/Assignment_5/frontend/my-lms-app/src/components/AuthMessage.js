@@ -38,11 +38,13 @@ function AuthMessage() {
         })
         .then(data => {
             if (data.success) {
-                setMessage("Login successful!");
+                setMessage(data.message);
                 setType("Success");
                 setStudent_id(data.student_id);
          
-                navigate(`/courses`); 
+                setTimeout(() => {
+                    navigate(`/courses`); 
+                }, 2000);
             } else {
                 setMessage(data.message);
                 setType("Error");

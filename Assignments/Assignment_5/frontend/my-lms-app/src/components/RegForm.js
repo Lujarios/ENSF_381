@@ -114,34 +114,43 @@ function RegForm() {
     };
 
     // Register function to call API
-    function register(e) {
+    async function register(e) {
         e.preventDefault();  // Prevent the form from refreshing
+        console.log("IN REGISTER FRONTEND");
 
         fetch('http://localhost:5000/register', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ 'username': username, 'password': password, 'email': email })
+            body: JSON.stringify({ 'username': username, 'password': password, 'confirm_password': confirm_password, 'email': email })
         })
         .then(response => {
+            console.log("AT THE THEN ")
             if (response.ok) {
+                console.log("RESPONSE OKAY")
                 return response.json();
             } else {
                 throw new Error('Registration Failed');
             }
+
         })
         .then(data => {
             if (data.success) {
-                setMessage("Registration successful!");
-                navigate(`/courses`); // Redirect to courses after successful registration
+                setMessage(data.message);
+                setTimeout(() => {
+                    navigate(`/courses`);
+                }, 2000);
             } else {
-                setMessage(data.message); // Show error message if registration fails
+                setMessage(data.message.join('\n')); // Show error message if registration fails
             }
+            console.log("MESSAGE");
+            console.log(message);
         })
         .catch(error => {
             setMessage('Registration failed. Please try again.');
         });
+
     }
 
     return (
@@ -150,6 +159,7 @@ function RegForm() {
             <form > {/* Use onSubmit instead of onClick for form submission */}
                 <div className="form-group">
                     <label htmlFor="username">Username:</label>
+                    <br></br>
                     <input
                         type="text"
                         className="form-control"
@@ -161,6 +171,7 @@ function RegForm() {
 
                 <div className="form-group">
                     <label htmlFor="password">Password:</label>
+                    <br></br>
                     <input
                         type="password"
                         className="form-control"
@@ -171,6 +182,7 @@ function RegForm() {
                 </div>
 				<div className="form-group">
                     <label htmlFor="confirm_password">Confirm Password:</label>
+                    <br></br>
                     <input
                         type="password"
                         className="form-control"
@@ -182,6 +194,7 @@ function RegForm() {
 
                 <div className="form-group">
                     <label htmlFor="email">Email:</label>
+                    <br></br>
                     <input
                         type="email"
                         className="form-control"
@@ -191,11 +204,11 @@ function RegForm() {
                     />
                 </div>
 				
-                <button type="submit" className="btn btn-primary" onSubmit={register}>
+                <button type="submit" className="btn btn-primary" onClick={register}>
                     Register
                 </button>
             </form>
-            {message && <p>{message}</p>} {/* Display registration message or error */}
+            {<pre >{message}</pre>} {/* Display registration message or error */}
         </div>
     );
 }
