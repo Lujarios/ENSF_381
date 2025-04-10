@@ -10,6 +10,8 @@ export const AuthContext = createContext();
 function AuthMessage() {
     const navigate = useNavigate();
 
+    const [showMessage, setShowMessage] = useState(false);
+
     const { enteredUsername, enteredPassword, loginPressed } = useContext(CredentialsContext);
 
     console.log("IN AUTH MESSAGE");
@@ -22,6 +24,10 @@ function AuthMessage() {
 
 
     function handleAuthentication() {
+
+        
+        setShowMessage(false);
+
         fetch('http://localhost:5000/login', {
             method: 'POST',
             headers: {
@@ -39,20 +45,22 @@ function AuthMessage() {
         .then(data => {
             if (data.success) {
                 setMessage(data.message);
-                setType("Success");
+                setType("Success:");
                 setStudent_id(data.student_id);
+                setShowMessage(true);
          
                 setTimeout(() => {
                     navigate(`/courses`); 
                 }, 2000);
             } else {
                 setMessage(data.message);
-                setType("Error");
+                setType("Error:");
+                setShowMessage(true);
             }
         })
         .catch(error => {
-            setMessage('Authentication failed. Incorrect username or password.');
-            setType("Error");
+            setMessage('Authentication failed. Please try again');
+            setType("Error:");
         });
     }
 
@@ -65,12 +73,16 @@ function AuthMessage() {
     }, [loginPressed]);
 
     return (
-        <div>
-            <p>
-                {type}: {message}
-            </p>
-        </div>
-
+        <>
+            {showMessage && (
+                <>
+                    <br />
+                    <div className="message-box">
+                        <p>{type} {message}</p>
+                    </div>
+                </>
+            )}
+        </>
     );
 }
 

@@ -133,6 +133,13 @@ button[class="signup"]:hover {
   opacity: 1.0;
 }
 
+div[class = "message-box"] {
+  border: solid black 1px;
+  white-space: pre-wrap; 
+  margin: 30px;
+  padding: 10px;
+}
+
 /* Buttons */
 main button {
   background-color: #008000;

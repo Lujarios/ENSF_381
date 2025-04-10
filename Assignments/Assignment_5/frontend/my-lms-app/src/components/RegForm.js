@@ -1,101 +1,17 @@
 
-// import React, { useState } from 'react';
-// import { useNavigate } from 'react-router-dom';
-
-
-// function RegForm() {
-// 	const navigate = useNavigate();
-
-// 	const [username, setUsername] = useState('');
-// 	const [email, setEmail] = useState('');
-// 	const [password, setPassword] = useState('');
-// 	const [message, setMessage] = useState("");s
-
-// 	const handleUsernameChange = (e) => {
-// 		setUsername(e.target.value);
-// 	};
-
-// 	const handleEmailChange = (e) => {
-// 		setEmail(e.target.value);
-// 	};
-
-// 	const handlePasswordChange = (e) => {
-// 		setPassword(e.target.value);
-// 	};
-
-// 	function register() {
-//         fetch('http://localhost:5000/register', {
-//             method: 'POST',
-//             headers: {
-//                 'Content-Type': 'application/json',
-//             },
-//             body: JSON.stringify({ 'username': username, 'password': password, 'email': email })
-//         })
-//         .then(response => {
-//             if (response.ok) {
-//                 return response.json();
-//             } else {
-//                 throw new Error('Authentication Failed');
-//             }
-//         })
-//         .then(data => {
-//             if (data.success) {
-//                 setMessage("Login successful!");
-
-         
-//                 navigate(`/courses`); 
-//             } else {
-//                 setMessage(data.message);
-   
-//             }
-//         })
-//         .catch(error => {
-//             setMessage('Authentication failed. Incorrect username or password.');
-
-//         });
-//     }
-
-
-
-
-
-
-// 	return (
-// 		<div className="container">
-// 			<h2>Registration Form</h2>
-// 			<form>
-// 				<div className="form-group">
-// 					<label htmlFor="username">Username:</label>
-// 					<input type="text" className="form-control" id="username" onChange={handleUsernameChange} />
-// 				</div>
-// 				<div className="form-group">
-// 					<label htmlFor="email">Email:</label>
-// 					<input type="email" className="form-control" id="email"  onChange={handleEmailChange}  />
-// 				</div>
-// 				<div className="form-group">
-// 					<label htmlFor="password">Password:</label>
-// 					<input type="password" className="form-control" id="password" onChange={handlePasswordChange} />
-// 				</div>
-// 				<button type="submit" className="btn btn-primary" onSubmit={register}>Register</button>
-// 			</form>
-// 		</div>
-// 	);
-// }
-
-// export default RegForm;
-
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function RegForm() {
     const navigate = useNavigate();
+    
 
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 	const [confirm_password, setConfirmPassword] = useState('');
     const [message, setMessage] = useState('');
+    const [showMessage, setShowMessage] = useState(false);
 
     const handleUsernameChange = (e) => {
         setUsername(e.target.value);
@@ -113,9 +29,13 @@ function RegForm() {
         setConfirmPassword(e.target.value);
     };
 
-    // Register function to call API
     async function register(e) {
+
         e.preventDefault();  // Prevent the form from refreshing
+
+        setShowMessage(false);
+
+
         console.log("IN REGISTER FRONTEND");
 
         fetch('http://localhost:5000/register', {
@@ -138,11 +58,13 @@ function RegForm() {
         .then(data => {
             if (data.success) {
                 setMessage(data.message);
+                setShowMessage(true);
                 setTimeout(() => {
-                    navigate(`/courses`);
+                    navigate(`/login`);
                 }, 2000);
             } else {
-                setMessage(data.message.join('\n')); // Show error message if registration fails
+                setMessage(data.message.join('\n')); 
+                setShowMessage(true);
             }
             console.log("MESSAGE");
             console.log(message);
@@ -156,7 +78,7 @@ function RegForm() {
     return (
         <div className="container">
             <h2>Registration Form</h2>
-            <form > {/* Use onSubmit instead of onClick for form submission */}
+            <form > 
                 <div className="form-group">
                     <label htmlFor="username">Username:</label>
                     <br></br>
@@ -196,7 +118,7 @@ function RegForm() {
                     <label htmlFor="email">Email:</label>
                     <br></br>
                     <input
-                        type="email"
+                        type="text"
                         className="form-control"
                         id="email"
                         value={email}
@@ -204,11 +126,16 @@ function RegForm() {
                     />
                 </div>
 				
-                <button type="submit" className="btn btn-primary" onClick={register}>
-                    Register
+                <button type="submit" class="signup" onClick={register}>
+                    Signup
                 </button>
             </form>
-            {<pre >{message}</pre>} {/* Display registration message or error */}
+            <br></br>
+            {showMessage && (
+                <div class="message-box">
+                    <p>{message}</p>
+                </div>
+            )}
         </div>
     );
 }

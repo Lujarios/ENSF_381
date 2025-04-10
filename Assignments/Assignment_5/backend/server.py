@@ -117,16 +117,16 @@ def register():
 	if (checkUsername(username) == False):
 		valid = False
 		print("HEHE")
-		messages.append("Username must be between 3-20 characters. Only alphanumeric characters, hyphens, and underscores allowed. Must start with a letter.")
+		messages.append("Invalid Username (Reason: Must be between 3-20 characters, only alphanumeric characters, hyphens, and underscores allowed. Must start with a letter)")
 	if(checkPassword(password) == False ):
 		valid = False
-		messages.append("bad passssword fix this message tho")
+		messages.append("Invalid Password (Reason: Must be at least 8 characters long. Must contain at least one uppercase letter, lowercase letter, number, and special character. No spaces)")
 	if (not(password == confirm_password)):
 		valid = False
-		messages.append("Passwords do not match CHECK THIS THO")
+		messages.append("Passwords do not match")
 	if(checkEmail(email) == False ):
 		valid = False
-		messages.append("bad email fix this message tho")
+		messages.append("Invalid Email (Reason: Must be a valid email with an @ symbol followed by 'gmail', 'ucalgary', 'hotmail', 'yahoo', or 'example'), and ending with domains (.com, .ca, .net, .io). No spaces. (E.g. username@example.com )")
 
 	if (valid):
 		students[student_id] = {
@@ -136,7 +136,7 @@ def register():
 			"enrolled_courses": []
 		}
 		printStudents()
-		return {"success": True, "student_id": student_id, "message": "Registration successful"}, 200
+		return {"success": True, "student_id": student_id, "message": "Signup successful! Redirecting to login..."}, 200
 
 	else:
 		return {"success": False, "message": messages}, 200
