@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useContext, createContext } from 'react';
 import { CredentialsContext } from './LoginForm';
 import { useNavigate } from 'react-router-dom';
-
+import { UserContext } from '../contexts/UserContext';
 
 export const AuthContext = createContext();
 
@@ -13,19 +13,17 @@ function AuthMessage() {
     const [showMessage, setShowMessage] = useState(false);
 
     const { enteredUsername, enteredPassword, loginPressed } = useContext(CredentialsContext);
+    const { setUserId } = useContext(UserContext);
 
     console.log("IN AUTH MESSAGE");
     console.log(enteredUsername);
     console.log(loginPressed);
     const [message, setMessage] = useState("");
     const [type, setType] = useState("");
-    const [student_id, setStudent_id] = useState("");
-
-
 
     function handleAuthentication() {
 
-        
+
         setShowMessage(false);
 
         fetch('http://localhost:5000/login', {
@@ -35,33 +33,33 @@ function AuthMessage() {
             },
             body: JSON.stringify({ 'username': enteredUsername, 'password': enteredPassword })
         })
-        .then(response => {
-            if (response.ok) {
-                return response.json();
-            } else {
-                throw new Error('Authentication Failed');
-            }
-        })
-        .then(data => {
-            if (data.success) {
-                setMessage(data.message);
-                setType("Success:");
-                setStudent_id(data.student_id);
-                setShowMessage(true);
-         
-                setTimeout(() => {
-                    navigate(`/courses`); 
-                }, 2000);
-            } else {
-                setMessage(data.message);
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Authentication Failed');
+                }
+            })
+            .then(data => {
+                if (data.success) {
+                    setMessage(data.message);
+                    setType("Success:");
+                    setUserId(data.student_id);
+                    setShowMessage(true);
+
+                    setTimeout(() => {
+                        navigate(`/courses`);
+                    }, 2000);
+                } else {
+                    setMessage(data.message);
+                    setType("Error:");
+                    setShowMessage(true);
+                }
+            })
+            .catch(error => {
+                setMessage('Authentication failed. Please try again');
                 setType("Error:");
-                setShowMessage(true);
-            }
-        })
-        .catch(error => {
-            setMessage('Authentication failed. Please try again');
-            setType("Error:");
-        });
+            });
     }
 
 

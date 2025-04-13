@@ -1,44 +1,47 @@
 import React, { useEffect, useState, useContext } from 'react';
 import EnrolledCourse from './EnrolledCourse';
-import { CourseContext } from './CourseItem';
+import { UserContext } from '../contexts/UserContext';
 
 function EnrollmentList({ rerender, onClick }) {
+    const { userId } = useContext(UserContext); // Get userId from UserContext
+    const [enrolledCourseIds, setEnrolledCourseIds] = useState([]);
     const [courses, setCourses] = useState([]);
-    const enrollmentCount = useContext(CourseContext);
-
-    console.log("IN ENROLLMENT LIST");
-    console.log(enrollmentCount);
 
     useEffect(() => {
-        console.log("rerender");
-    }, [rerender]);
-
-    useEffect(() => {
-        // Fetch courses from the backend
+        // Fetch all courses
         const fetchCourses = async () => {
             try {
                 const response = await fetch('http://localhost:5000/courses');
-                if (!response.ok) {
-                    throw new Error('Failed to fetch courses');
-                }
+                if (!response.ok) throw new Error('Failed to fetch courses');
                 const data = await response.json();
-                setCourses(data.courses); // Extract the courses array
+                setCourses(data.courses);
             } catch (error) {
                 console.error('Error fetching courses:', error);
             }
         };
 
+        // Fetch enrolled courses for the user
+        const fetchEnrolledCourses = async () => {
+            try {
+                const response = await fetch(`http://localhost:5000/student_courses/${userId}`);
+                if (!response.ok) throw new Error('Failed to fetch enrolled courses');
+                const data = await response.json();
+                setEnrolledCourseIds(data.enrolled_courses); // Save enrolled course IDs
+            } catch (error) {
+                console.error('Error fetching enrolled courses:', error);
+            }
+        };
+
         fetchCourses();
-    }, []);
+        fetchEnrolledCourses();
+    }, [userId, rerender]);
 
     function calculateTotalCreditHours() {
         let total = 0;
         courses.forEach((course) => {
-            if (localStorage.getItem(`${course.id}`) === 'true') {
-                const weeksString = course.duration.split(" ")[0]; // Get the first part before the space
-                console.log(weeksString);
-                const weeks = isNaN(weeksString) ? 0 : parseInt(weeksString, 10);
-                total = total + (weeks * 4);
+            if (enrolledCourseIds.includes(course.id)) {
+                const weeks = parseInt(course.duration.split(' ')[0], 10) || 0;
+                total += weeks * 4; // Assuming 4 credit hours per week
             }
         });
         return total;
@@ -48,15 +51,10 @@ function EnrollmentList({ rerender, onClick }) {
         <div>
             <h1>Enrolled Courses</h1>
             <p>Total Credit Hours: {calculateTotalCreditHours()}</p>
-
-            <div style={{
-                display: 'flex', margin: 50
-            }}>
+            <div style={{ display: 'flex', margin: 50 }}>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }}>
                     {courses.map((course) => {
-                        const isEnrolled = localStorage.getItem(`${course.id}`) === 'true';
-                        if (isEnrolled) {
-                            console.log("COURSE ENROLLED");
+                        if (enrolledCourseIds.includes(course.id)) {
                             return <EnrolledCourse key={course.id} course={course} onClick={onClick} />;
                         }
                         return null;

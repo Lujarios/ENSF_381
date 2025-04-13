@@ -86,14 +86,6 @@ def getNewStudentId():
 		student_id = str(random.randint(1000,9999))
 	return student_id
 
-# @app.route('/register', methods=['OPTIONS'])
-# def handle_options():
-#     response = app.make_response()
-#     response.headers['Access-Control-Allow-Origin'] = '*'
-#     response.headers['Access-Control-Allow-Methods'] = 'POST, OPTIONS'
-#     response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization'
-#     return response
-
 
 @app.route('/register',methods=['POST'])
 def register():

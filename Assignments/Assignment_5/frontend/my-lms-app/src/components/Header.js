@@ -1,10 +1,11 @@
 import logo from '../images/logo.jpg';
 
 function Header() {
+
 	return (
 		<a>
 			<header>
-				<img src={logo} alt="LMS Logo" style={{ width: "100px", height: "100px" }} />
+				<img src={logo} alt="LMS Logo" style={{ width: '100px', height: '100px' }} />
 				<h1>LMS - Learning Management System</h1>
 			</header>
 			<div>
@@ -17,4 +18,5 @@ function Header() {
 		</a>
 	);
 }
+
 export default Header;
